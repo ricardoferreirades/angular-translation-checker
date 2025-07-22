@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ricardoferreira/angular-translation-checker.git"
+    "url": "git+https://github.com/ricardoferreirades/angular-translation-checker.git"
   },
   "bugs": {
-    "url": "https://github.com/ricardoferreira/angular-translation-checker/issues"
+    "url": "https://github.com/ricardoferreirades/angular-translation-checker/issues"
   },
-  "homepage": "https://github.com/ricardoferreira/angular-translation-checker#readme",
+  "homepage": "https://github.com/ricardoferreirades/angular-translation-checker#readme",
   "dependencies": {},
   "devDependencies": {},
   "peerDependencies": {
