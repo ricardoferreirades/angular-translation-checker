@@ -11,6 +11,9 @@ A comprehensive tool for analyzing translation keys in Angular projects using ng
 - ⚡ **Dynamic Pattern Support**: Detects template interpolation, string concatenation, and variable keys
 - 🎯 **Multiple Patterns**: Supports pipes, services, and programmatic usage (static + dynamic)
 - 🧠 **Smart Analysis**: Identifies dynamic key patterns and provides wildcard matching
+- 🏢 **Enterprise Ready**: Full support for SCREAMING_SNAKE_CASE and underscore patterns ⚡ NEW!
+- 📦 **Constants Detection**: Automatically finds keys in enums, object literals, and class properties ⚡ NEW!
+- 🔧 **Function Call Support**: Handles complex dynamic patterns with function calls ⚡ NEW!
 - 📁 **Auto-Detection**: Automatically finds common Angular translation folder structures
 - 📊 **Multiple Formats**: Console, JSON, and CSV output options
 - 🚀 **CI/CD Ready**: Exit codes and automated reporting for pipelines
@@ -313,6 +316,11 @@ The tool detects these translation usage patterns:
 {{ `user.${userType}.name` | translate }}
 {{ `errors.${errorCode}.message` | translate }}
 
+<!-- Underscore patterns with function calls ⚡ ENHANCED! -->
+{{ `ACCESS_RIGHTS_CONFIRMATION.INFO.${toScreamingSnakeCase(key)}` | translate }}
+{{ `API_ENDPOINTS.${action.toUpperCase()}` | translate }}
+{{ `ERROR_MESSAGES.${errorType}` | translate }}
+
 <!-- String concatenation -->
 {{ 'messages.' + messageType | translate }}
 {{ 'permissions.' + userRole + '.description' | translate }}
@@ -343,6 +351,11 @@ this.translationService.translate('another.key')
 this.translate.get(`user.${this.userType}.profile`)
 this.translate.instant(`notifications.${type}.title`)
 
+// Underscore patterns with function calls ⚡ ENHANCED!
+this.translate.get(`ACCESS_RIGHTS_CONFIRMATION.INFO.${toScreamingSnakeCase(key)}`)
+this.translate.instant(`API_ENDPOINTS.${action.toUpperCase()}`)
+this.translate.get(`USER_PROFILE.${userType.toUpperCase()}.SETTINGS`)
+
 // String concatenation
 this.translate.get('errors.' + errorCode)
 this.translate.instant('messages.' + messageType + '.content')
@@ -355,7 +368,116 @@ this.translate.instant(this.getTranslationKey())
 this.translate.get(isLoggedIn ? 'user.dashboard' : 'guest.welcome')
 ```
 
-## 📊 Output Formats
+### Constants and Enums Usage ⚡ NEW!
+```typescript
+// Object literals with translation keys
+export const MESSAGES = {
+  ERROR: 'error.message',
+  SUCCESS: 'success.message',
+  NETWORK_ERROR: 'error.network'
+};
+
+// Enum declarations
+export enum ErrorMessages {
+  NETWORK = 'error.network',
+  VALIDATION = 'error.validation',
+  GENERAL = 'error.message'
+}
+
+// Simple constants
+const ERROR_KEY = 'error.message';
+export const USER_PROFILE_NAME = 'user.profile.name';
+
+// Class properties
+export class TranslationConstants {
+  public static readonly MESSAGES = {
+    ERROR: 'error.message',
+    SUCCESS: 'success.message'
+  };
+  
+  private readonly ADMIN_DASHBOARD = 'admin.panel.dashboard';
+  readonly errorMessage = 'error.message';
+}
+
+// Usage in components
+this.translate.get(MESSAGES.ERROR);
+this.translate.instant(ErrorMessages.NETWORK);
+this.translate.get(TranslationConstants.MESSAGES.SUCCESS);
+```
+
+## � Latest Enhancements (v1.3.0)
+
+### Underscore Pattern Support
+The library now fully supports enterprise naming conventions with underscores:
+
+```typescript
+// ✅ Now Detected: SCREAMING_SNAKE_CASE patterns
+{{ `ACCESS_RIGHTS_CONFIRMATION.INFO.${toScreamingSnakeCase(key)}` | translate }}
+{{ `API_ENDPOINTS.${action.toUpperCase()}` | translate }}
+{{ `USER_PROFILE.${userType}_SETTINGS` | translate }}
+
+// Matches translation keys like:
+// ACCESS_RIGHTS_CONFIRMATION.INFO.USER_MANAGEMENT
+// ACCESS_RIGHTS_CONFIRMATION.INFO.ADMIN_PANEL
+// API_ENDPOINTS.USER_CREATE
+// USER_PROFILE.ADMIN_SETTINGS
+```
+
+### Constants and Enums Detection
+Translation keys stored in constants, enums, and object literals are now automatically detected:
+
+```typescript
+// ✅ All these patterns are now detected
+export const TRANSLATION_KEYS = {
+  ERROR_MESSAGE: 'error.message',
+  SUCCESS_MESSAGE: 'success.message'
+};
+
+export enum ApiMessages {
+  NETWORK_ERROR = 'api.network.error',
+  TIMEOUT = 'api.timeout.error'
+}
+
+const USER_SETTINGS_KEY = 'user.settings.theme';
+
+export class Constants {
+  static readonly ADMIN_PANEL = 'admin.panel.dashboard';
+  private errorKey = 'error.validation';
+}
+```
+
+### Real-World Impact
+These enhancements solve common enterprise Angular development scenarios:
+
+```typescript
+// Enterprise component example
+@Component({
+  selector: 'app-access-control',
+  template: `
+    <!-- Dynamic patterns with underscores -->
+    <div>{{ getAccessMessage(userRole) | translate }}</div>
+    
+    <!-- Constants usage -->
+    <error-message>{{ ERRORS.NETWORK | translate }}</error-message>
+  `
+})
+export class AccessControlComponent {
+  // Constants detected automatically
+  readonly ERRORS = {
+    NETWORK: 'error.network.connection',
+    TIMEOUT: 'error.network.timeout'
+  };
+  
+  getAccessMessage(role: string) {
+    // Dynamic pattern with function call - now detected!
+    return `ACCESS_RIGHTS_CONFIRMATION.${role.toUpperCase()}.GRANTED`;
+  }
+}
+```
+
+**Result**: Zero false positives for unused keys in enterprise applications! 🎉
+
+## �📊 Output Formats
 
 ### Console Output (Default)
 
@@ -519,6 +641,9 @@ Extend detection patterns by modifying the library or submitting a feature reque
 | Feature | angular-translation-checker | i18n-unused | Others |
 |---------|----------------------------|-------------|--------|
 | Angular pipe support | ✅ Perfect | ❌ No | ⚠️ Limited |
+| Dynamic patterns | ✅ Advanced (underscores, functions) | ❌ No | ⚠️ Basic |
+| Constants/Enums | ✅ Full Support | ❌ No | ❌ No |
+| Enterprise naming | ✅ SCREAMING_SNAKE_CASE | ❌ No | ❌ No |
 | Auto-detection | ✅ Yes | ❌ No | ⚠️ Basic |
 | Zero config | ✅ Yes | ❌ No | ⚠️ Complex |
 | Multiple outputs | ✅ Console, JSON, CSV | ⚠️ Console only | ⚠️ Limited |
@@ -575,6 +700,11 @@ Extend detection patterns by modifying the library or submitting a feature reque
 | **String Concatenation** | `'prefix.' + var \| translate` | ✅ Enhanced Support | 1.0.0+ |
 | **Conditional Keys** | `(cond ? 'key1' : 'key2') \| translate` | ✅ Enhanced Support | 1.0.0+ |
 | **Variable Keys** | `dynamicKey \| translate` | ✅ Enhanced Support | 1.0.0+ |
+| **Underscore Patterns** | `` `ACCESS_RIGHTS.${key}` \| translate `` | ✅ Full Support | 1.3.0+ |
+| **Function Calls** | `` `KEY.${toUpperCase(var)}` \| translate `` | ✅ Full Support | 1.3.0+ |
+| **Constants/Enums** | `const KEYS = { ERROR: 'error.msg' }` | ✅ Full Support | 1.3.0+ |
+| **Object Literals** | `MESSAGES = { SUCCESS: 'success.msg' }` | ✅ Full Support | 1.3.0+ |
+| **Class Properties** | `readonly key = 'translation.key'` | ✅ Full Support | 1.3.0+ |
 
 ### 🖥️ **Platform Compatibility**
 
