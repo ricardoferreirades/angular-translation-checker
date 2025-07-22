@@ -156,7 +156,11 @@ This creates `i18n-checker.config.json`:
   "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
   "outputFormat": "console",
   "exitOnIssues": false,
-  "verbose": false
+  "verbose": false,
+  "ignoreKeys": [],
+  "ignorePatterns": [],
+  "ignoreRegex": [],
+  "ignoreFiles": []
 }
 ```
 
@@ -171,6 +175,121 @@ This creates `i18n-checker.config.json`:
 | `outputFormat` | string | Output format: 'console', 'json', 'csv' |
 | `exitOnIssues` | boolean | Exit with error code if issues found |
 | `verbose` | boolean | Enable verbose logging |
+| `ignoreKeys` | string[] | Exact translation keys to ignore |
+| `ignorePatterns` | string[] | Wildcard patterns to ignore (*, **) |
+| `ignoreRegex` | string[] | Regular expression patterns to ignore |
+| `ignoreFiles` | string[] | Translation files to ignore completely |
+
+## 🚫 Ignore Keys Configuration
+
+### Why Use Ignore Keys?
+
+Ignore keys help you focus on actual translation issues by excluding:
+- Debug/development keys
+- Deprecated translations (kept for backward compatibility)
+- Temporary/experimental features
+- Third-party library keys
+- Dynamic keys that can't be statically analyzed
+
+### Configuration Examples
+
+#### Basic Ignore Configuration
+```json
+{
+  "ignoreKeys": [
+    "debug.console.log",
+    "test.mock.user",
+    "temp.new_feature"
+  ],
+  "ignorePatterns": [
+    "debug.**",
+    "temp.*",
+    "*.deprecated"
+  ],
+  "ignoreRegex": [
+    "^[A-Z_]+$"
+  ]
+}
+```
+
+#### Advanced Ignore Patterns
+
+**Wildcard Patterns:**
+- `*` matches within a segment (no dots)
+- `**` matches across segments (including dots)
+
+```json
+{
+  "ignorePatterns": [
+    "debug.*",           // matches: debug.api, debug.logs
+    "debug.**",          // matches: debug.api.request, debug.logs.error
+    "*.test",            // matches: user.test, admin.test
+    "internal.**.*"      // matches: internal.dev.tools, internal.system.logs
+  ]
+}
+```
+
+**Regular Expressions:**
+```json
+{
+  "ignoreRegex": [
+    "^temp\\.",          // Keys starting with 'temp.'
+    "\\.test$",          // Keys ending with '.test'
+    "^[A-Z_]+$"          // All caps constants like 'API_KEY'
+  ]
+}
+```
+
+### Command Line Usage
+
+```bash
+# Ignore specific keys
+ng-i18n-check --ignore-keys "debug.api,temp.test"
+
+# Ignore patterns
+ng-i18n-check --ignore-patterns "debug.**,*.deprecated"
+
+# Ignore files
+ng-i18n-check --ignore-files "debug-translations.json"
+
+# Combine multiple ignore options
+ng-i18n-check --ignore-keys "temp.feature" --ignore-patterns "debug.**"
+```
+
+### Real-World Example
+
+```json
+{
+  "localesPath": "./src/assets/i18n",
+  "srcPath": "./src",
+  "ignoreKeys": [
+    "debug.console.log",
+    "test.mock.user"
+  ],
+  "ignorePatterns": [
+    "debug.**",
+    "temp.*",
+    "admin.deprecated.**",
+    "internal.**"
+  ],
+  "ignoreRegex": [
+    "^[A-Z_]+$"
+  ],
+  "ignoreFiles": [
+    "debug-translations.json",
+    "test-translations.json"
+  ]
+}
+```
+
+This configuration would ignore:
+- Exact keys: `debug.console.log`, `test.mock.user`
+- All debug keys: `debug.api.request`, `debug.performance.timing`
+- Temporary keys: `temp.new_feature`, `temp.experiment`
+- Deprecated admin keys: `admin.deprecated.old_panel`
+- Internal keys: `internal.dev.tools`, `internal.system.logs`
+- Constants: `API_KEY`, `DEBUG_MODE`
+- Entire files: `debug-translations.json`, `test-translations.json`
 
 ## 🔍 Detection Patterns
 

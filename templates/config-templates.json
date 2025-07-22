@@ -7,14 +7,49 @@
     "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
     "outputFormat": "console",
     "exitOnIssues": false,
-    "verbose": false
+    "verbose": false,
+    "ignoreKeys": [],
+    "ignorePatterns": [],
+    "ignoreRegex": [],
+    "ignoreFiles": []
+  },
+  "with-ignore-patterns": {
+    "description": "Configuration with common ignore patterns for development",
+    "localesPath": "./src/assets/i18n",
+    "srcPath": "./src",
+    "keysExtensions": [".ts", ".html"],
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
+    "outputFormat": "console",
+    "exitOnIssues": false,
+    "verbose": false,
+    "ignoreKeys": [
+      "debug.console.log",
+      "test.mock.user"
+    ],
+    "ignorePatterns": [
+      "debug.**",
+      "temp.*",
+      "*.deprecated",
+      "internal.**"
+    ],
+    "ignoreRegex": [
+      "^[A-Z_]+$"
+    ],
+    "ignoreFiles": [
+      "debug-translations.json",
+      "test-translations.json"
+    ]
   },
   "public-folder": {
     "description": "Angular project with translations in public folder",
     "localesPath": "./public/i18n",
     "srcPath": "./src",
     "keysExtensions": [".ts", ".html"],
-    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"]
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
+    "ignoreKeys": [],
+    "ignorePatterns": [],
+    "ignoreRegex": [],
+    "ignoreFiles": []
   },
   "assets-locales": {
     "description": "Angular project with locales folder in assets",

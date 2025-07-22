@@ -5,5 +5,9 @@
   "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
   "outputFormat": "console",
   "exitOnIssues": false,
-  "verbose": false
+  "verbose": false,
+  "ignoreKeys": [],
+  "ignorePatterns": [],
+  "ignoreRegex": [],
+  "ignoreFiles": []
 }

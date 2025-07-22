@@ -38,6 +38,24 @@ function parseArgs() {
         options.configFile = nextArg;
         i++;
         break;
+      case '--ignore-keys':
+        if (nextArg && !nextArg.startsWith('--')) {
+          options.ignoreKeys = nextArg.split(',').map(k => k.trim());
+          i++;
+        }
+        break;
+      case '--ignore-patterns':
+        if (nextArg && !nextArg.startsWith('--')) {
+          options.ignorePatterns = nextArg.split(',').map(p => p.trim());
+          i++;
+        }
+        break;
+      case '--ignore-files':
+        if (nextArg && !nextArg.startsWith('--')) {
+          options.ignoreFiles = nextArg.split(',').map(f => f.trim());
+          i++;
+        }
+        break;
       case '--exit-on-issues':
         options.exitOnIssues = true;
         break;
@@ -82,6 +100,9 @@ Options:
   -s, --src-path <path>            Path to source files
   -f, --format <format>            Output format: console, json, csv
   -c, --config <path>              Config file path
+  --ignore-keys <keys>             Comma-separated list of keys to ignore
+  --ignore-patterns <patterns>     Comma-separated list of wildcard patterns to ignore
+  --ignore-files <files>           Comma-separated list of translation files to ignore
   --exit-on-issues                 Exit with non-zero code if issues found
   -v, --verbose                    Verbose output
 
@@ -92,6 +113,17 @@ Examples:
   ng-i18n-check --format json > report.json       # JSON output
   ng-i18n-check --exit-on-issues                  # For CI/CD pipelines
   ng-i18n-check --verbose                         # Detailed output
+  ng-i18n-check --ignore-keys "debug.api,temp.test"     # Ignore specific keys
+  ng-i18n-check --ignore-patterns "debug.*,*.test"      # Ignore key patterns
+  ng-i18n-check --ignore-files "debug-translations.json" # Ignore translation files
+
+Ignore Patterns:
+  * matches within a segment (no dots)
+  ** matches across segments (including dots)
+  Examples:
+    "debug.*" matches "debug.api" but not "debug.api.request"
+    "debug.**" matches "debug.api", "debug.api.request", etc.
+    "*.test" matches "user.test", "admin.test", etc.
 
 Auto-detection:
   The tool automatically detects common Angular translation folder structures:
@@ -103,7 +135,7 @@ Auto-detection:
 Configuration:
   Use --init to generate a configuration file, or create i18n-checker.config.json manually.
 
-For more information, visit: https://github.com/yourusername/angular-translation-checker
+For more information, visit: https://github.com/ricardoferreirades/angular-translation-checker
 `);
 }
 
