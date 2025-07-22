@@ -1,0 +1,57 @@
+{
+  "name": "angular-translation-checker",
+  "version": "1.0.0",
+  "description": "A comprehensive tool for analyzing translation keys in Angular projects using ngx-translate",
+  "main": "lib/index.js",
+  "bin": {
+    "ng-i18n-check": "bin/ng-i18n-check.js",
+    "angular-translation-checker": "bin/ng-i18n-check.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/test.js",
+    "lint": "echo \"No linting configured\"",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "angular",
+    "i18n",
+    "translation",
+    "ngx-translate",
+    "internationalization",
+    "unused-translations",
+    "translation-keys",
+    "angular-cli"
+  ],
+  "author": {
+    "name": "Ricardo Ferreira",
+    "email": "ricardo.ferreira@example.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardoferreira/angular-translation-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ricardoferreira/angular-translation-checker/issues"
+  },
+  "homepage": "https://github.com/ricardoferreira/angular-translation-checker#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "@angular/core": ">=12.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/core": {
+      "optional": true
+    }
+  }
+}

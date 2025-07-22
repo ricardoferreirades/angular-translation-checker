@@ -1,0 +1,27 @@
+# Ignore test files and temporary directories
+test/test-project/
+*.tmp
+*.temp
+
+# Ignore common development files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore coverage reports
+coverage/
+.nyc_output/
+
+# Ignore generated documentation
+docs/generated/

@@ -1,0 +1,40 @@
+{
+  "default": {
+    "description": "Default Angular CLI project structure",
+    "localesPath": "./src/assets/i18n",
+    "srcPath": "./src",
+    "keysExtensions": [".ts", ".html"],
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
+    "outputFormat": "console",
+    "exitOnIssues": false,
+    "verbose": false
+  },
+  "public-folder": {
+    "description": "Angular project with translations in public folder",
+    "localesPath": "./public/i18n",
+    "srcPath": "./src",
+    "keysExtensions": [".ts", ".html"],
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"]
+  },
+  "assets-locales": {
+    "description": "Angular project with locales folder in assets",
+    "localesPath": "./src/assets/locales",
+    "srcPath": "./src",
+    "keysExtensions": [".ts", ".html"],
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"]
+  },
+  "nx-workspace": {
+    "description": "Nx workspace with apps and libs",
+    "localesPath": "./apps/my-app/src/assets/i18n",
+    "srcPath": "./apps/my-app/src",
+    "keysExtensions": [".ts", ".html"],
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage", "tmp"]
+  },
+  "monorepo": {
+    "description": "Monorepo with multiple Angular apps",
+    "localesPath": "./packages/shared/i18n",
+    "srcPath": "./packages",
+    "keysExtensions": [".ts", ".html"],
+    "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage", "build"]
+  }
+}
