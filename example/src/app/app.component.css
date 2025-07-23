@@ -1,0 +1,217 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  background: #87CEEB;
+  color: #333;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.language-switcher {
+  margin: 0 1rem;
+}
+
+.language-select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.language-select option {
+  background: white;
+  color: #333;
+}
+
+.language-info {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.demo-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.nav-button {
+  background: transparent;
+  border: 1px solid #87CEEB;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.nav-button:hover {
+  background: #87CEEB;
+  border-color: #87CEEB;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.sign-in-button {
+  background: #87CEEB;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sign-in-button:hover {
+  background: #6bb6d4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+}
+
+.main-content {
+  flex: 1;
+  background: white;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  color: #333;
+  background: #f8f9fa;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  color: #333;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-section {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.features-section {
+  padding: 2rem;
+  background: #f8f9fa;
+  margin: 2rem;
+  border-radius: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.footer {
+  background: #6c757d;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0;
+  color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .navigation {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .search-section,
+  .features-section {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* Loading animations */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #e9ecef;
+  border-radius: 50%;
+  border-top-color: #87CEEB;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Flight-specific styles */
+.flight-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.flight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.price-tag {
+  background: #87CEEB;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}

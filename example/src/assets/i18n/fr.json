@@ -1,0 +1,133 @@
+{
+  "NAVIGATION": {
+    "FLIGHTS": "Vols",
+    "HOTELS": "Hôtels",
+    "CARS": "Location de Voiture", 
+    "MY_TRIPS": "Mes Voyages",
+    "SIGN_IN": "Se Connecter",
+    "HELP": "© 2024 FlightFinder - Alimenté par Angular Translation Checker"
+  },
+  "FLIGHT": {
+    "SEARCH": {
+      "TITLE": "Trouver des vols",
+      "SUBTITLE": "Recherchez les meilleures offres de vols",
+      "FROM": "De",
+      "TO": "À",
+      "DEPARTURE_DATE": "Date de départ",
+      "RETURN_DATE": "Date de retour",
+      "PASSENGERS": "Passagers",
+      "CLASS": "Classe",
+      "SEARCH_BUTTON": "Rechercher des vols",
+      "ONE_WAY": "Aller simple",
+      "ROUND_TRIP": "Aller-retour",
+      "MULTI_CITY": "Multi-villes"
+    },
+    "RESULTS": {
+      "TITLE": "Résultats de vols",
+      "FOUND_FLIGHTS": "{count} vols trouvés",
+      "SORT_BY": "Trier par",
+      "FILTER": "Filtrer",
+      "PRICE": "Prix",
+      "DURATION": "Durée",
+      "DEPARTURE_TIME": "Heure de départ",
+      "ARRIVAL_TIME": "Heure d'arrivée",
+      "STOPS": "Escales",
+      "AIRLINE": "Compagnie aérienne",
+      "BOOK_NOW": "Réserver maintenant",
+      "SELECT_FLIGHT": "Sélectionner le vol",
+      "DETAILS": "Détails",
+      "NO_RESULTS": "Aucun vol trouvé"
+    },
+    "FILTERS": {
+      "NONSTOP": "Sans escale",
+      "ONE_STOP": "1 escale",
+      "TWO_PLUS_STOPS": "2+ escales",
+      "AIRLINES": "Compagnies aériennes",
+      "CLEAR_ALL": "Effacer les filtres"
+    },
+    "BOOKING": {
+      "BOOKING_SUCCESS": "Réservation initiée avec succès",
+      "BOOKING_REFERENCE": "Référence de Réservation"
+    }
+  },
+  "AIRLINES": {
+    "AMERICAN": "American Airlines",
+    "DELTA": "Delta Air Lines",
+    "UNITED": "United Airlines",
+    "LUFTHANSA": "Lufthansa"
+  },
+  "AIRPORTS": {
+    "LAX": "International de Los Angeles",
+    "JFK": "International John F. Kennedy"
+  },
+  "COMMON": {
+    "LOADING": {
+      "LOADING": "Chargement...",
+      "PLEASE_WAIT": "Veuillez patienter...",
+      "FLIGHTS": "Chargement des vols...",
+      "HOTELS": "Chargement des hôtels...",
+      "CARS": "Chargement de location de voiture...",
+      "MY_TRIPS": "Chargement de vos voyages..."
+    },
+    "SUCCESS": {
+      "UPDATED": "Mis à jour avec succès",
+      "SAVED": "Enregistré avec succès"
+    },
+    "ERROR": {
+      "VALIDATION": "Veuillez vérifier votre saisie"
+    },
+    "LANGUAGE": {
+      "EN": "Anglais",
+      "ES": "Espagnol",
+      "FR": "Français",
+      "EN_SELECTED": "Langue changée en Anglais",
+      "ES_SELECTED": "Langue changée en Espagnol",
+      "FR_SELECTED": "Langue changée en Français"
+    },
+    "TOAST": {
+      "ERROR": {
+        "TITLE": "Erreur",
+        "MESSAGE": "Une erreur est survenue"
+      },
+      "SUCCESS": {
+        "TITLE": "Succès",
+        "MESSAGE": "Opération terminée avec succès"
+      }
+    },
+    "BUTTONS": {
+      "SAVE": "Enregistrer",
+      "EDIT": "Modifier",
+      "DELETE": "Supprimer",
+      "CANCEL": "Annuler",
+      "CONFIRM": "Confirmer"
+    }
+  },
+  "FORMS": {
+    "LABELS": {
+      "EMAIL": "Adresse E-mail",
+      "PASSWORD": "Mot de Passe"
+    },
+    "VALIDATION": {
+      "REQUIRED": "Ce champ est obligatoire",
+      "EMAIL": "Veuillez saisir un e-mail valide",
+      "PASSWORD": "Le mot de passe doit contenir au moins 8 caractères"
+    }
+  },
+  "NOTIFICATIONS": {
+    "EMAIL": {
+      "TITLE": "Notification par E-mail",
+      "MESSAGE": "Votre notification par e-mail a été envoyée avec succès"
+    },
+    "SYSTEM": {
+      "TITLE": "Notification Système",
+      "LOGIN": "Utilisateur connecté avec succès",
+      "LOGOUT": "Utilisateur déconnecté avec succès",
+      "UPDATE": "Système mis à jour avec succès",
+      "ERROR": "Erreur système survenue"
+    },
+    "BOOKING": {
+      "TITLE": "Notification de Réservation",
+      "MESSAGE": "Votre réservation a été confirmée"
+    }
+  }
+}

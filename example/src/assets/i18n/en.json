@@ -1,0 +1,150 @@
+{
+  "NAVIGATION": {
+    "FLIGHTS": "Flights",
+    "HOTELS": "Hotels",
+    "CARS": "Car Rentals", 
+    "MY_TRIPS": "My Trips",
+    "SIGN_IN": "Sign In",
+    "HELP": "© 2024 FlightFinder - Powered by Angular Translation Checker"
+  },
+  "FLIGHT": {
+    "SEARCH": {
+      "TITLE": "Find flights",
+      "SUBTITLE": "Search for the best flight deals",
+      "FROM": "From",
+      "TO": "To",
+      "DEPARTURE_DATE": "Departure date",
+      "RETURN_DATE": "Return date",
+      "PASSENGERS": "Passengers",
+      "CLASS": "Class",
+      "SEARCH_BUTTON": "Search flights",
+      "ONE_WAY": "One way",
+      "ROUND_TRIP": "Round trip",
+      "MULTI_CITY": "Multi-city"
+    },
+    "RESULTS": {
+      "TITLE": "Flight results",
+      "FOUND_FLIGHTS": "Found {count} flights",
+      "SORT_BY": "Sort by",
+      "FILTER": "Filter",
+      "PRICE": "Price",
+      "DURATION": "Duration",
+      "DEPARTURE_TIME": "Departure time",
+      "ARRIVAL_TIME": "Arrival time",
+      "STOPS": "Stops",
+      "AIRLINE": "Airline",
+      "BOOK_NOW": "Book now",
+      "SELECT_FLIGHT": "Select flight",
+      "DETAILS": "Details",
+      "NO_RESULTS": "No flights found"
+    },
+    "FILTERS": {
+      "NONSTOP": "Nonstop",
+      "ONE_STOP": "1 stop",
+      "TWO_PLUS_STOPS": "2+ stops",
+      "AIRLINES": "Airlines",
+      "CLEAR_ALL": "Clear filters"
+    },
+    "BOOKING": {
+      "BOOKING_SUCCESS": "Booking initiated successfully",
+      "BOOKING_REFERENCE": "Booking Reference"
+    }
+  },
+  "AIRLINES": {
+    "AMERICAN": "American Airlines",
+    "DELTA": "Delta Air Lines",
+    "UNITED": "United Airlines",
+    "LUFTHANSA": "Lufthansa"
+  },
+  "AIRPORTS": {
+    "LAX": "Los Angeles International",
+    "JFK": "John F. Kennedy International"
+  },
+  "COMMON": {
+    "LOADING": {
+      "LOADING": "Loading...",
+      "PLEASE_WAIT": "Please wait...",
+      "FLIGHTS": "Loading flights...",
+      "HOTELS": "Loading hotels...",
+      "CARS": "Loading car rentals...",
+      "MY_TRIPS": "Loading your trips..."
+    },
+    "SUCCESS": {
+      "UPDATED": "Updated successfully",
+      "SAVED": "Saved successfully"
+    },
+    "ERROR": {
+      "VALIDATION": "Please check your input"
+    },
+    "LANGUAGE": {
+      "EN": "English",
+      "ES": "Spanish",
+      "FR": "French",
+      "EN_SELECTED": "Language changed to English",
+      "ES_SELECTED": "Language changed to Spanish",
+      "FR_SELECTED": "Language changed to French"
+    },
+    "TOAST": {
+      "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "An error occurred"
+      },
+      "SUCCESS": {
+        "TITLE": "Success",
+        "MESSAGE": "Operation completed successfully"
+      }
+    },
+    "BUTTONS": {
+      "SAVE": "Save",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "CANCEL": "Cancel",
+      "CONFIRM": "Confirm"
+    }
+  },
+  "FORMS": {
+    "LABELS": {
+      "EMAIL": "Email Address",
+      "PASSWORD": "Password"
+    },
+    "VALIDATION": {
+      "REQUIRED": "This field is required",
+      "EMAIL": "Please enter a valid email",
+      "PASSWORD": "Password must be at least 8 characters"
+    }
+  },
+  "NOTIFICATIONS": {
+    "EMAIL": {
+      "TITLE": "Email Notification",
+      "MESSAGE": "Your email notification has been sent successfully"
+    },
+    "SYSTEM": {
+      "TITLE": "System Notification",
+      "LOGIN": "User logged in successfully",
+      "LOGOUT": "User logged out successfully",
+      "UPDATE": "System updated successfully",
+      "ERROR": "System error occurred"
+    },
+    "BOOKING": {
+      "TITLE": "Booking Notification",
+      "MESSAGE": "Your booking has been confirmed"
+    }
+  },
+  "TOAST": {
+    "ERROR": {
+      "TITLE": "Error",
+      "MESSAGE": "An error occurred"
+    },
+    "SUCCESS": {
+      "TITLE": "Success",
+      "MESSAGE": "Operation completed successfully"
+    }
+  },
+  "BUTTONS": {
+    "SAVE": "Save",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm"
+  }
+}

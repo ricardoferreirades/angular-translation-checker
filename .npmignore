@@ -1,0 +1,60 @@
+# Example application - not for npm distribution
+example/
+
+# Development files
+test/
+*.test.js
+test-*.js
+
+# Documentation not needed in npm package
+CHANGELOG.md
+CONTRIBUTING.md
+PUBLISHING.md
+PUBLISHING-GUIDE.md
+SECURITY.md
+
+# Build and development scripts
+github-setup.sh
+publish.sh
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD files
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage and testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Temporary files
+tmp/
+temp/
