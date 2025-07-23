@@ -5,6 +5,35 @@
 
 A comprehensive tool for analyzing translation keys in Angular projects using ngx-translate. Detect unused translations, missing keys, and keep your i18n files clean and organized.
 
+## 📖 Table of Contents
+
+### 🚀 Getting Started
+- [✨ Features](#-features)
+- [🏃 Quick Start](#-quick-start)
+- [🛠️ Try the Live Example](#️-try-the-live-example)
+- [📋 Installation & Setup](#-installation--setup)
+
+### 📚 Usage & Configuration
+- [🎯 Usage](#-usage)
+- [⚙️ Configuration](#️-configuration)
+- [🚫 Ignore Keys Configuration](#-ignore-keys-configuration)
+- [🔍 Detection Patterns](#-detection-patterns)
+
+### 📊 Advanced Features
+- [🎉 Latest Enhancements](#-latest-enhancements)
+- [📊 Output Formats](#-output-formats)
+- [🔄 CI/CD Integration](#-cicd-integration)
+- [🏗️ Project Structure Support](#️-project-structure-support)
+
+### 🔧 Reference & Support
+- [🔧 Advanced Usage](#-advanced-usage)
+- [🆚 vs. Other Tools](#-vs-other-tools)
+- [🔧 Compatibility](#-compatibility)
+- [🤝 Contributing](#-contributing)
+- [📝 License & Support](#-license--support)
+
+---
+
 ## ✨ Features
 
 - 🔍 **Accurate Detection**: Specifically designed for Angular's `{{ 'key' | translate }}` pipe syntax
@@ -69,9 +98,11 @@ npm run check-translations
 - **FlightFinder App**: A modern flight search application like Google Flights
 - **Multilingual Support**: English, Spanish, and French translations
 - **Complex Patterns**: Dynamic keys, enterprise naming conventions, and advanced usage
-- **Real Results**: See exactly how the tool detects 20+ static keys and 7+ dynamic patterns
+- **Real Results**: See exactly how the tool detects 27+ static keys and 4+ dynamic patterns
 
 Visit: http://localhost:4200 to explore the live demo!
+
+[⬆️ Back to Table of Contents](#-table-of-contents)
 
 ## 📋 Installation & Setup
 
@@ -155,6 +186,8 @@ ng-i18n-check --exit-on-issues
 # Verbose mode for debugging
 ng-i18n-check --verbose
 ```
+
+[⬆️ Back to Table of Contents](#-table-of-contents)
 
 ## ⚙️ Configuration
 
@@ -322,6 +355,8 @@ This configuration would ignore:
 - Constants: `API_KEY`, `DEBUG_MODE`
 - Entire files: `debug-translations.json`, `test-translations.json`
 
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
 ## 🔍 Detection Patterns
 
 The tool detects these translation usage patterns:
@@ -338,13 +373,13 @@ The tool detects these translation usage patterns:
 {{ `buttons.save` | translate }}
 ```
 
-### Dynamic Template Pipe Usage ⚡ NEW!
+### Dynamic Template Pipe Usage
 ```html
 <!-- Template interpolation -->
 {{ `user.${userType}.name` | translate }}
 {{ `errors.${errorCode}.message` | translate }}
 
-<!-- Underscore patterns with function calls ⚡ ENHANCED! -->
+<!-- Underscore patterns with function calls -->
 {{ `ACCESS_RIGHTS_CONFIRMATION.INFO.${toScreamingSnakeCase(key)}` | translate }}
 {{ `API_ENDPOINTS.${action.toUpperCase()}` | translate }}
 {{ `ERROR_MESSAGES.${errorType}` | translate }}
@@ -373,13 +408,13 @@ this.translateService.get('custom.key')
 this.translationService.translate('another.key')
 ```
 
-### Dynamic Programmatic Usage ⚡ NEW!
+### Dynamic Programmatic Usage
 ```typescript
 // Template literal interpolation
 this.translate.get(`user.${this.userType}.profile`)
 this.translate.instant(`notifications.${type}.title`)
 
-// Underscore patterns with function calls ⚡ ENHANCED!
+// Underscore patterns with function calls
 this.translate.get(`ACCESS_RIGHTS_CONFIRMATION.INFO.${toScreamingSnakeCase(key)}`)
 this.translate.instant(`API_ENDPOINTS.${action.toUpperCase()}`)
 this.translate.get(`USER_PROFILE.${userType.toUpperCase()}.SETTINGS`)
@@ -396,7 +431,7 @@ this.translate.instant(this.getTranslationKey())
 this.translate.get(isLoggedIn ? 'user.dashboard' : 'guest.welcome')
 ```
 
-### Constants and Enums Usage ⚡ NEW!
+### Constants and Enums Usage
 ```typescript
 // Object literals with translation keys
 export const MESSAGES = {
@@ -433,7 +468,9 @@ this.translate.instant(ErrorMessages.NETWORK);
 this.translate.get(TranslationConstants.MESSAGES.SUCCESS);
 ```
 
-## 🎉 Latest Enhancements (v1.3.3)
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
+## 🎉 Latest Enhancements
 
 ### ✈️ Complete Example Application
 A fully functional FlightFinder application showcasing:
@@ -473,9 +510,9 @@ export class FlightFinderComponent {
 ```
 
 **🎯 Example Results:**
-- **Static Keys Detected**: 25+ translation keys across 3 languages
-- **Dynamic Patterns**: 7+ complex patterns including enterprise naming
-- **Zero False Positives**: Perfect accuracy with real-world usage
+- **Static Keys Detected**: 27+ translation keys across 3 languages
+- **Dynamic Patterns**: 4+ complex patterns including enterprise naming
+- **Comprehensive Analysis**: 92+ total translation keys with smart pattern matching
 - **Multilingual Support**: English, Spanish, and French translations
 
 ### Enhanced Enterprise Support
@@ -484,7 +521,7 @@ export class FlightFinderComponent {
 The library now fully supports enterprise naming conventions with underscores:
 
 ```typescript
-// ✅ Now Detected: SCREAMING_SNAKE_CASE patterns
+// Detected: SCREAMING_SNAKE_CASE patterns
 {{ `ACCESS_RIGHTS_CONFIRMATION.INFO.${toScreamingSnakeCase(key)}` | translate }}
 {{ `API_ENDPOINTS.${action.toUpperCase()}` | translate }}
 {{ `USER_PROFILE.${userType}_SETTINGS` | translate }}
@@ -500,7 +537,7 @@ The library now fully supports enterprise naming conventions with underscores:
 Translation keys stored in constants, enums, and object literals are now automatically detected:
 
 ```typescript
-// ✅ All these patterns are now detected
+// All these patterns are now detected
 export const TRANSLATION_KEYS = {
   ERROR_MESSAGE: 'error.message',
   SUCCESS_MESSAGE: 'success.message'
@@ -548,7 +585,7 @@ export class AccessControlComponent {
 }
 ```
 
-**Result**: Zero false positives for unused keys in enterprise applications! 🎉
+**Result**: Comprehensive detection of all translation patterns in enterprise applications! 🎉
 
 ## �📊 Output Formats
 
@@ -558,17 +595,18 @@ export class AccessControlComponent {
 🔍 Analyzing translations...
 
 📊 Translation Analysis Results:
-   Total translation keys: 25
-   Used keys: 22
-   Unused keys: 3
-   Missing keys: 0
+   Total translation keys: 92
+   Used keys (static): 27
+   Used keys (dynamic patterns): 25
+   Unused keys: 53
+   Missing keys: 8
 
 🚨 Unused translation keys:
    - menu.settings
    - buttons.advanced
    - footer.copyright
 
-✅ All translations are properly used!
+✅ All translations are properly analyzed!
 ```
 
 ### JSON Output
@@ -579,10 +617,10 @@ ng-i18n-check --format json
 
 ```json
 {
-  "totalKeys": 25,
-  "usedKeysCount": 22,
+  "totalKeys": 92,
+  "usedKeysCount": 52,
   "unusedKeys": ["menu.settings", "buttons.advanced"],
-  "missingKeys": [],
+  "missingKeys": ["common.new.feature"],
   "translationKeys": [...],
   "usedKeys": [...]
 }
@@ -601,6 +639,8 @@ unused,"buttons.advanced",unused
 missing,"new.feature",missing
 ```
 
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
 ## 🔄 CI/CD Integration
 
 ### GitHub Actions
@@ -616,7 +656,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
       - run: npm ci
       - run: npx angular-translation-checker --exit-on-issues
 ```
@@ -646,6 +686,8 @@ translation-check:
   }
 }
 ```
+
+[⬆️ Back to Table of Contents](#-table-of-contents)
 
 ## 🏗️ Project Structure Support
 
@@ -688,6 +730,8 @@ packages/
     └── src/
 ```
 
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
 ## 🔧 Advanced Usage
 
 ### Programmatic API
@@ -709,6 +753,8 @@ console.log('Missing keys:', results.missingKeys);
 
 Extend detection patterns by modifying the library or submitting a feature request.
 
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
 ## 🆚 vs. Other Tools
 
 | Feature | angular-translation-checker | i18n-unused | Others |
@@ -728,7 +774,7 @@ Extend detection patterns by modifying the library or submitting a feature reque
 
 | Component | Minimum Version | Recommended | Notes |
 |-----------|----------------|-------------|--------|
-| **Node.js** | 14.0.0 | 18.0.0+ | LTS versions recommended |
+| **Node.js** | 14.0.0 | 20.0.0+ | LTS versions recommended |
 | **Angular** | 12.0.0 | 15.0.0+ | All modern Angular versions |
 | **ngx-translate** | Any | 15.0.0+ | Core translation library |
 | **npm** | 6.0.0 | 8.0.0+ | Package manager |
@@ -816,6 +862,8 @@ Extend detection patterns by modifying the library or submitting a feature reque
 | **Translation Files** | Up to 100 languages | Tested with 50+ |
 | **Project Size** | No limit | Tested with 10,000+ files |
 
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please:
@@ -828,23 +876,27 @@ Contributions are welcome! Please:
 ### Development Setup
 
 ```bash
-git clone https://github.com/yourusername/angular-translation-checker.git
+git clone https://github.com/ricardoferreirades/angular-translation-checker.git
 cd angular-translation-checker
 npm install
 npm test
 ```
 
-## 📝 License
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
+## 📝 License & Support
+
+### 📝 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🐛 Issues & Support
+### 🐛 Issues & Support
 
 - **Report bugs**: [GitHub Issues](https://github.com/ricardoferreirades/angular-translation-checker/issues)
 - **Questions**: [GitHub Discussions](https://github.com/ricardoferreirades/angular-translation-checker/discussions)
 - **Try the Example**: [FlightFinder Demo App](https://github.com/ricardoferreirades/angular-translation-checker/tree/main/example)
 
-## 🎯 Example Application
+### 🎯 Example Application
 
 Explore the complete **FlightFinder** demo application in the `/example` folder:
 
@@ -861,10 +913,12 @@ npm install && npm start
 - 🎨 Clean, professional design
 - 📊 Perfect demonstration of all detection capabilities
 
-## 🔗 Related Projects
+### 🔗 Related Projects
 
 - [ngx-translate](https://github.com/ngx-translate/core) - Angular internationalization library
 - [@angular/localize](https://angular.io/guide/i18n) - Angular's official i18n solution
+
+[⬆️ Back to Table of Contents](#-table-of-contents)
 
 ---
 

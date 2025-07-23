@@ -46,14 +46,15 @@ When you run the translation checker on this example, you'll see:
 🔍 Analyzing translations...
 
 📊 Translation Analysis Results:
-   Total translation keys: 78
-   Used keys: 78
-   Static patterns detected: 25+
-   Dynamic patterns detected: 7+
-   Missing keys: 0
-   Unused keys: 0
+   Total translation keys: 92
+   Used keys (static): 27
+   Used keys (dynamic patterns): 25
+   Unused keys: 53
+   Missing keys: 8
+   Static patterns detected: 27+
+   Dynamic patterns detected: 4+
 
-✅ Perfect translation coverage!
+🎯 Keys matched by dynamic patterns: 25
 ```
 
 ## 📁 Project Structure
@@ -186,17 +187,17 @@ npm run check-translations
 🔍 Analyzing translations...
 
 📊 Translation Analysis Results:
-   Total translation keys: 78 (across all languages)
-   Used keys: 78
-   Unused keys: 0
-   Missing keys: 0
+   Total translation keys: 92 (across all languages)
+   Used keys (static): 27
+   Used keys (dynamic patterns): 25
+   Unused keys: 53
+   Missing keys: 8
    
-✅ All translations are properly used!
-
 🎯 Pattern Detection Summary:
    Static template pipes: 15+
-   Static service calls: 10+
-   Dynamic patterns: 7+
+   Static service calls: 12+
+   Dynamic patterns: 4+
+   Keys matched by patterns: 25
    Constants/Objects: 8+
    
 ✨ Dynamic patterns detected:
