@@ -3,6 +3,18 @@ test/test-project/
 *.tmp
 *.temp
 
+# Ignore Node.js dependencies and package locks
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ignore example project generated files
+example/node_modules/
+example/package-lock.json
+example/dist/
+example/.angular/
+example/results/
+
 # Ignore common development files
 .DS_Store
 Thumbs.db
@@ -25,3 +37,14 @@ coverage/
 
 # Ignore generated documentation
 docs/generated/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+
+# Ignore build and distribution files
+dist/
+build/
+*.tgz
+
+# Ignore development roadmap and internal planning documents
+FEATURE_ROADMAP.md
+DOCUMENTATION_AUDIT.md
