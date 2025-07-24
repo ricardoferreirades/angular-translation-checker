@@ -37,9 +37,7 @@ ng-i18n-check [options]
 |--------|-------|------|---------|-------------|
 | `--config` | `-c` | string | | Path to configuration file |
 | `--src-path` | `-s` | string | `./src` | Source code directory |
-| `--translations-path` | `-t` | string | `./src/assets/i18n` | Translation files directory |
-| `--default-language` | `-d` | string | `en` | Default language code |
-| `--languages` | `-l` | string[] | `["en"]` | Supported language codes |
+| `--locales-path` | `-l` | string | `./src/assets/i18n` | Translation files directory |
 
 ### Output Control
 
@@ -49,16 +47,14 @@ ng-i18n-check [options]
 | `--format` | `-f` | string | `console` | Output format (console/json/csv) |
 | `--exit-on-issues` | | boolean | `false` | Exit with error code if issues found |
 | `--verbose` | `-v` | boolean | `false` | Verbose output |
-| `--quiet` | `-q` | boolean | `false` | Suppress non-error output |
 
 ### Filtering Options
 
 | Option | Alias | Type | Default | Description |
 |--------|-------|------|---------|-------------|
-| `--ignore-keys` | | string[] | `[]` | Keys to ignore (supports wildcards) |
-| `--ignore-dynamic` | | boolean | `false` | Ignore dynamic key patterns |
-| `--max-unused` | | number | | Maximum allowed unused keys |
-| `--max-missing` | | number | | Maximum allowed missing keys |
+| `--ignore-keys` | | string[] | `[]` | Keys to ignore (comma-separated) |
+| `--ignore-patterns` | | string[] | `[]` | Wildcard patterns to ignore |
+| `--ignore-files` | | string[] | `[]` | Translation files to ignore |
 
 ### Utility Options
 
@@ -76,11 +72,11 @@ ng-i18n-check [options]
 # Run with default settings
 ng-i18n-check
 
-# Use custom source path
-ng-i18n-check --src-path ./apps/web/src
+# Use custom paths
+ng-i18n-check --src-path ./apps/web/src --locales-path ./apps/web/assets/i18n
 
-# Specify languages
-ng-i18n-check --languages en,es,fr,de
+# Use configuration file
+ng-i18n-check --config ./i18n-checker.config.json
 ```
 
 ### Output Control
