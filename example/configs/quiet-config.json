@@ -1,0 +1,13 @@
+{
+  "localesPath": "./src/assets/i18n",
+  "srcPath": "./src",
+  "keysExtensions": [".ts", ".html"],
+  "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
+  "outputFormat": "console",
+  "outputSections": ["summary", "unused"],
+  "exitOnIssues": false,
+  "verbose": false,
+  "ignoreKeys": ["DEBUG.*", "TEMP.*", "favicon.ico"],
+  "ignorePatterns": ["INTERNAL.*", "favicon**"],
+  "ignoreFiles": ["**/*.spec.ts", "**/*.test.ts"]
+}

@@ -18,6 +18,14 @@
     "check:typescript-only": "../bin/ng-i18n-check.js --config configs/typescript-only.config.json",
     "check:html-only": "../bin/ng-i18n-check.js --config configs/html-only.config.json",
     "check:ignore-files": "../bin/ng-i18n-check.js --config configs/ignore-files.config.json",
+    "check:quiet": "../bin/ng-i18n-check.js --config configs/quiet-config.json",
+    
+    "output:summary": "../bin/ng-i18n-check.js --output summary",
+    "output:unused": "../bin/ng-i18n-check.js --output unused --config configs/quiet-config.json",
+    "output:missing": "../bin/ng-i18n-check.js --output missing --config configs/quiet-config.json",
+    "output:ignored": "../bin/ng-i18n-check.js --output ignored --config configs/quiet-config.json",
+    "output:dynamic": "../bin/ng-i18n-check.js --output dynamicPatterns --config configs/quiet-config.json",
+    "output:custom": "../bin/ng-i18n-check.js --output summary,unused,missing --config configs/quiet-config.json",
     
     "check:json": "../bin/ng-i18n-check.js --format json",
     "check:csv": "../bin/ng-i18n-check.js --format csv",
@@ -26,8 +34,9 @@
     "check:exclude-debug": "../bin/ng-i18n-check.js",
     "check:include-debug": "../bin/ng-i18n-check.js",
     
-    "demo:all-configs": "npm run check:basic && npm run check:advanced && npm run check:typescript-only && npm run check:html-only && npm run check:ignore-files",
+    "demo:all-configs": "npm run check:basic && npm run check:advanced && npm run check:typescript-only && npm run check:html-only && npm run check:ignore-files && npm run check:quiet",
     "demo:output-formats": "npm run check:console && npm run check:json && npm run check:csv",
+    "demo:output-sections": "echo 'Testing Output Sections:' && npm run output:summary && echo '' && npm run output:unused && echo '' && npm run output:missing && echo '' && npm run output:ignored && echo '' && npm run output:custom",
     "demo:quick-validate": "./quick-validate.sh",
     "demo:full-test": "./test-all-configs.sh",
     "demo:generate-configs": "./generate-configs.sh"
@@ -54,7 +63,7 @@
     "@angular/compiler-cli": "^16.0.0",
     "@types/jasmine": "~4.3.0",
     "@types/node": "^18.7.0",
-    "angular-translation-checker": "^1.3.3",
+    "angular-translation-checker": "^1.4.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-coverage": "~2.2.0",
