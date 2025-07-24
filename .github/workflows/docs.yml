@@ -13,8 +13,6 @@ on:
     paths:
       - 'docs/**'
       - 'README.md'
-  release:
-    types: [published, released, created]
   workflow_dispatch: # Allow manual triggering
 
 permissions:
@@ -68,7 +66,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
-    if: github.ref == 'refs/heads/main' || github.event_name == 'release'
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
