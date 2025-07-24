@@ -48,7 +48,7 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Help',
+          text: 'Help & Support',
           items: [
             { text: 'Troubleshooting', link: '/guide/troubleshooting' }
           ]
@@ -59,6 +59,7 @@ export default defineConfig({
           text: 'Examples',
           items: [
             { text: 'Overview', link: '/examples/' },
+            { text: '✈️ FlightFinder Demo', link: '/examples/flightfinder' },
             { text: 'Basic Usage', link: '/examples/basic-usage' },
             { text: 'Configuration Examples', link: '/examples/configurations' },
             { text: 'Output Formats', link: '/examples/output-formats' },

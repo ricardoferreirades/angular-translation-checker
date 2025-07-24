@@ -2,6 +2,29 @@
 
 Welcome to the Angular Translation Checker documentation! This comprehensive tool helps you maintain translation quality in Angular applications using ngx-translate.
 
+## ✈️ Try the FlightFinder Demo First!
+
+**See Angular Translation Checker in action with a complete Angular application!**
+
+The [FlightFinder Demo](/examples/flightfinder) is a comprehensive Angular app that demonstrates **all features** with real-world usage patterns:
+
+- **Modern Flight Search Interface** with multi-language support
+- **All 21 configuration properties** demonstrated
+- **Complex translation patterns** including dynamic keys
+- **Enterprise naming conventions** (SCREAMING_SNAKE_CASE)
+- **Live example** you can run and explore
+
+```bash
+# Quick start with FlightFinder
+git clone https://github.com/ricardoferreirades/angular-translation-checker.git
+cd angular-translation-checker/example
+npm install && npm start
+```
+
+[🚀 Explore FlightFinder Demo →](/examples/flightfinder)
+
+---
+
 ## What is Angular Translation Checker?
 
 Angular Translation Checker is a powerful command-line tool and Node.js library that analyzes your Angular project to provide insights about:

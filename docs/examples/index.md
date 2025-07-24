@@ -2,6 +2,84 @@
 
 This section provides practical examples of using Angular Translation Checker in different scenarios. Whether you're just getting started or implementing advanced workflows, these examples will help you get the most out of the tool.
 
+## ✈️ FlightFinder Demo Application
+
+**Try the complete live example application that demonstrates all features!**
+
+The FlightFinder is a comprehensive Angular application that showcases **all 21 configuration properties** of Angular Translation Checker with real-world usage patterns.
+
+### 🌟 What's Included
+- **Modern Flight Search Interface**: Clean UI similar to Google Flights
+- **Multi-language Support**: English, Spanish, and French with real-time switching
+- **Complex Translation Patterns**: All detection capabilities demonstrated
+- **Enterprise Patterns**: SCREAMING_SNAKE_CASE and dynamic key generation
+- **All 21 Configuration Properties**: Complete demonstration with practical examples
+
+### 🚀 Quick Start with FlightFinder
+
+```bash
+# Clone the repository
+git clone https://github.com/ricardoferreirades/angular-translation-checker.git
+cd angular-translation-checker/example
+
+# Install dependencies
+npm install
+
+# Run the application
+npm start
+# Visit: http://localhost:4200
+
+# Test all configuration scenarios
+./test-all-configs.sh
+```
+
+### 📊 Configuration Examples Demonstrated
+
+The FlightFinder app demonstrates every configuration property:
+
+**Core Properties:**
+- `localesPath` - Translation files location
+- `srcPath` - Source code analysis scope
+- `keysExtensions` - File types to analyze
+- `outputFormat` - Console, JSON, CSV outputs
+
+**Analysis Options:**
+- `excludeDirs` - Directory exclusion patterns
+- `ignoreKeys` - Specific key ignoring
+- `ignorePatterns` - Pattern-based ignoring
+- `ignoreFiles` - File-level exclusions
+
+**Output Control:**
+- `outputSections` - Granular section control
+- `verbose` - Detailed information display
+- `exitOnIssues` - CI/CD integration
+
+**And many more!** See the [complete configuration guide](/guide/configuration) for all 21 properties.
+
+### 🎯 Specific Test Scenarios
+
+```bash
+# Basic configuration demo
+npm run check:basic
+
+# Advanced with all properties
+npm run check:advanced
+
+# TypeScript-only analysis
+npm run check:typescript-only
+
+# HTML-only analysis
+npm run check:html-only
+
+# File ignoring demonstration
+npm run check:ignore-files
+
+# Quiet mode for CI/CD
+npm run check:quiet
+```
+
+---
+
 ## Quick Examples
 
 ### Basic Health Check
