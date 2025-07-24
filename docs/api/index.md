@@ -263,4 +263,4 @@ declare function getTranslationKeys(localesPath: string): string[];
 declare function findTranslationUsage(srcPath: string, keys: string[]): string[];
 ```
 
-Need more help? Check out our [examples](/examples) or [troubleshooting guide](/guide/troubleshooting).
+Need more help? Check out our [examples](/examples/) or [troubleshooting guide](/guide/troubleshooting).

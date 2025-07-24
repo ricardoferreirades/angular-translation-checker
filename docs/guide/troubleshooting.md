@@ -382,7 +382,7 @@ head -20 src/assets/i18n/en.json
 
 - [GitHub Discussions](https://github.com/ricardoferreira/angular-translation-checker/discussions)
 - [Stack Overflow Tag](https://stackoverflow.com/questions/tagged/angular-translation-checker)
-- [Documentation Examples](/examples)
+- [Documentation Examples](/examples/)
 
 ---
 

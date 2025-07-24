@@ -238,4 +238,4 @@ The new `outputSections` configuration replaces individual output flags:
 }
 ```
 
-Need help with configuration? Check out our [examples](/examples) or [troubleshooting guide](/guide/troubleshooting).
+Need help with configuration? Check out our [examples](/examples/) or [troubleshooting guide](/guide/troubleshooting).
