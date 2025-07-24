@@ -8,10 +8,12 @@
   "verbose": true,
   "ignoreKeys": [
     "DEBUG.*",
-    "TEMP.*"
+    "TEMP.*",
+    "favicon.ico"
   ],
   "ignorePatterns": [
-    "INTERNAL.*"
+    "INTERNAL.*",
+    "favicon**"
   ],
   "ignoreFiles": [
     "**/*.spec.ts",
