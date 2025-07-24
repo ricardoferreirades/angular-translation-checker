@@ -33,6 +33,13 @@ function parseArgs() {
         options.outputFormat = nextArg;
         i++;
         break;
+      case '--output':
+      case '-o':
+        if (nextArg && !nextArg.startsWith('--')) {
+          options.outputSections = nextArg.split(',').map(s => s.trim());
+          i++;
+        }
+        break;
       case '--config':
       case '-c':
         options.configFile = nextArg;
@@ -99,6 +106,7 @@ Options:
   -l, --locales-path <path>        Path to translation files
   -s, --src-path <path>            Path to source files
   -f, --format <format>            Output format: console, json, csv
+  -o, --output <sections>          Output sections: summary,dynamicPatterns,ignored,unused,missing,usedKeys,translationKeys,config
   -c, --config <path>              Config file path
   --ignore-keys <keys>             Comma-separated list of keys to ignore
   --ignore-patterns <patterns>     Comma-separated list of wildcard patterns to ignore
@@ -111,11 +119,23 @@ Examples:
   ng-i18n-check --init                            # Generate config file
   ng-i18n-check --locales-path ./assets/i18n      # Custom translation path
   ng-i18n-check --format json > report.json       # JSON output
+  ng-i18n-check --output summary,unused           # Show only summary and unused keys
+  ng-i18n-check --output ignored,missing          # Show only ignored and missing keys
   ng-i18n-check --exit-on-issues                  # For CI/CD pipelines
   ng-i18n-check --verbose                         # Detailed output
   ng-i18n-check --ignore-keys "debug.api,temp.test"     # Ignore specific keys
   ng-i18n-check --ignore-patterns "debug.*,*.test"      # Ignore key patterns
   ng-i18n-check --ignore-files "debug-translations.json" # Ignore translation files
+
+Output Sections:
+  summary          Translation statistics and counts
+  dynamicPatterns  Keys matched by dynamic patterns
+  ignored          Keys that are ignored by patterns/config
+  unused           Keys that exist in translations but aren't used
+  missing          Keys that are used in code but missing from translations
+  usedKeys         All keys found in the codebase (verbose)
+  translationKeys  All keys from translation files (verbose)
+  config           Configuration used for analysis (verbose)
 
 Ignore Patterns:
   * matches within a segment (no dots)
@@ -178,8 +198,9 @@ function main() {
         // Run analysis
         const results = analyzeTranslations(config);
         
-        // Output results
-        const output = formatOutput(results, config.outputFormat);
+        // Output results with selected sections
+        const outputSections = config.outputSections || null;
+        const output = formatOutput(results, config.outputFormat, outputSections);
         
         if (config.outputFormat === 'console') {
           console.log(output);
