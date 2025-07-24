@@ -3,8 +3,19 @@ name: Deploy Documentation to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'docs/**'
+      - 'README.md'
+      - 'package.json'
+      - '.github/workflows/docs.yml'
   pull_request:
     branches: [main]
+    paths:
+      - 'docs/**'
+      - 'README.md'
+  release:
+    types: [published, released, created]
+  workflow_dispatch: # Allow manual triggering
 
 permissions:
   contents: read
@@ -33,6 +44,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Update documentation version
+        run: |
+          # Update version in VitePress config if needed
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Building documentation for version: $VERSION"
+          
       - name: Build documentation
         run: npm run docs:build
 
