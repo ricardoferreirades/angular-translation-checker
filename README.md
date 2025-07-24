@@ -9,6 +9,7 @@ A comprehensive tool for analyzing translation keys in Angular projects using ng
 
 ### 🚀 Getting Started
 - [✨ Features](#-features)
+- [📚 Documentation](#-documentation)
 - [🏃 Quick Start](#-quick-start)
 - [🛠️ Try the Live Example](#️-try-the-live-example)
 - [📋 Installation & Setup](#-installation--setup)
@@ -51,7 +52,17 @@ A comprehensive tool for analyzing translation keys in Angular projects using ng
 - 🔧 **Zero Dependencies**: Lightweight with no external dependencies
 - ✈️ **Live Example**: Complete FlightFinder demo app showcasing real-world usage patterns
 
-## 🚀 Quick Start
+## � Documentation
+
+📖 **[Complete Documentation](https://ricardoferreirades.github.io/angular-translation-checker/)**
+
+- [Getting Started Guide](https://ricardoferreirades.github.io/angular-translation-checker/guide/)
+- [API Reference](https://ricardoferreirades.github.io/angular-translation-checker/api/)
+- [Configuration Options](https://ricardoferreirades.github.io/angular-translation-checker/guide/configuration)
+- [Examples & Use Cases](https://ricardoferreirades.github.io/angular-translation-checker/examples/)
+- [CLI Commands](https://ricardoferreirades.github.io/angular-translation-checker/guide/cli-commands)
+
+## �🚀 Quick Start
 
 ### Installation
 

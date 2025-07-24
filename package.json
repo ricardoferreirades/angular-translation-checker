@@ -1,6 +1,6 @@
 {
   "name": "angular-translation-checker",
-  "version": "1.3.5",
+  "version": "1.4.0",
   "description": "A comprehensive tool for analyzing translation keys in Angular projects using ngx-translate",
   "main": "lib/index.js",
   "bin": {
