@@ -10,25 +10,26 @@ npm install angular-translation-checker --save-dev
 
 ## Core API
 
-### `checkTranslations(config)`
+## Core Functions
 
-Main function that analyzes translation usage in your Angular project.
+### `analyzeTranslations(config)`
+
+The main analysis function that scans your Angular project for translation usage.
 
 ```javascript
-const { checkTranslations } = require('angular-translation-checker');
+const { analyzeTranslations } = require('angular-translation-checker');
 
 async function analyzeProject() {
-  const config = {
-    srcPath: './src',
-    translationsPath: './src/assets/i18n',
-    languages: ['en', 'es', 'fr']
-  };
-  
   try {
-    const results = await checkTranslations(config);
-    console.log('Analysis complete:', results.summary);
+    const config = {
+      srcPath: './src',
+      localesPath: './src/assets/i18n'
+    };
+    
+    const results = analyzeTranslations(config);
+    console.log('Analysis completed:', results);
   } catch (error) {
-    console.error('Analysis failed:', error.message);
+    console.error('Analysis failed:', error);
   }
 }
 ```
