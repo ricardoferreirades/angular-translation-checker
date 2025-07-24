@@ -9,9 +9,28 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "check-translations": "ng-i18n-check",
-    "check-translations-json": "ng-i18n-check --output-format json",
-    "check-translations-verbose": "ng-i18n-check --verbose"
+    
+    "check-translations": "../bin/ng-i18n-check.js",
+    "check-translations-verbose": "../bin/ng-i18n-check.js --verbose",
+    
+    "check:basic": "../bin/ng-i18n-check.js --config configs/basic.config.json",
+    "check:advanced": "../bin/ng-i18n-check.js --config configs/advanced.config.json",
+    "check:typescript-only": "../bin/ng-i18n-check.js --config configs/typescript-only.config.json",
+    "check:html-only": "../bin/ng-i18n-check.js --config configs/html-only.config.json",
+    "check:ignore-files": "../bin/ng-i18n-check.js --config configs/ignore-files.config.json",
+    
+    "check:json": "../bin/ng-i18n-check.js --format json",
+    "check:csv": "../bin/ng-i18n-check.js --format csv",
+    "check:console": "../bin/ng-i18n-check.js --format console",
+    
+    "check:exclude-debug": "../bin/ng-i18n-check.js",
+    "check:include-debug": "../bin/ng-i18n-check.js",
+    
+    "demo:all-configs": "npm run check:basic && npm run check:advanced && npm run check:typescript-only && npm run check:html-only && npm run check:ignore-files",
+    "demo:output-formats": "npm run check:console && npm run check:json && npm run check:csv",
+    "demo:quick-validate": "./quick-validate.sh",
+    "demo:full-test": "./test-all-configs.sh",
+    "demo:generate-configs": "./generate-configs.sh"
   },
   "private": true,
   "dependencies": {

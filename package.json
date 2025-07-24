@@ -17,7 +17,17 @@
     "test": "node test/test.js",
     "test-example": "node test-example.js",
     "lint": "echo \"No linting configured\"",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "example:basic": "cd example && ../bin/ng-i18n-check.js --config configs/basic.config.json",
+    "example:advanced": "cd example && ../bin/ng-i18n-check.js --config configs/advanced.config.json",
+    "example:typescript": "cd example && ../bin/ng-i18n-check.js --config configs/typescript-only.config.json",
+    "example:html": "cd example && ../bin/ng-i18n-check.js --config configs/html-only.config.json",
+    "example:ignore": "cd example && ../bin/ng-i18n-check.js --config configs/ignore-files.config.json",
+    "example:all": "npm run example:basic && echo '\\n' && npm run example:advanced && echo '\\n' && npm run example:typescript && echo '\\n' && npm run example:html && echo '\\n' && npm run example:ignore",
+    "example:demo": "cd example && npm run demo:all-configs",
+    "example:install": "cd example && npm install",
+    "demo": "npm run example:demo",
+    "validate": "npm run example:all"
   },
   "keywords": [
     "angular",
