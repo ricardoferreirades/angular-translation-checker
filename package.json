@@ -32,6 +32,9 @@
     "example:output-demos": "echo 'Testing Output Sections:' && npm run example:output-summary && echo '\\n' && npm run example:output-unused && echo '\\n' && npm run example:output-ignored && echo '\\n' && npm run example:output-missing",
     "example:demo": "cd example && npm run demo:all-configs",
     "example:install": "cd example && npm install",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "demo": "npm run example:demo",
     "validate": "npm run example:all"
   },
@@ -64,8 +67,9 @@
     "url": "https://github.com/ricardoferreirades/angular-translation-checker/issues"
   },
   "homepage": "https://github.com/ricardoferreirades/angular-translation-checker#readme",
-  "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  },
   "peerDependencies": {
     "@angular/core": ">=12.0.0"
   },
