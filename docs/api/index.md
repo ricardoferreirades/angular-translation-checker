@@ -4,7 +4,7 @@ This section provides comprehensive documentation for the Angular Translation Ch
 
 ## Core Functions
 
-### `checkTranslations(config)`
+### `analyzeTranslations(config)`
 
 Main function that analyzes translation usage in your Angular project.
 
@@ -12,100 +12,98 @@ Main function that analyzes translation usage in your Angular project.
 - `config` (Object): Configuration object
 
 **Returns:**
-- `Promise<Object>`: Analysis results
+- `Object`: Analysis results (synchronous)
 
 **Example:**
 ```javascript
-const { checkTranslations } = require('angular-translation-checker');
+const { analyzeTranslations } = require('angular-translation-checker');
 
 const config = {
   srcPath: './src',
-  translationsPath: './src/assets/i18n',
-  languages: ['en', 'es', 'fr']
+  localesPath: './src/assets/i18n'
 };
 
-checkTranslations(config).then(results => {
-  console.log(results);
-});
+const results = analyzeTranslations(config);
+console.log(results);
 ```
 
-### `formatOutput(results, config)`
+### `formatOutput(results, format, sections)`
 
-Formats analysis results for console output.
+Formats analysis results for different output types.
 
 **Parameters:**
-- `results` (Object): Analysis results from `checkTranslations()`
-- `config` (Object): Configuration object
+- `results` (Object): Analysis results from `analyzeTranslations()`
+- `format` (string): Output format ('console', 'json', 'csv')
+- `sections` (Array): Optional array of sections to include
 
 **Returns:**
-- `string`: Formatted console output
+- `string`: Formatted output
 
 **Example:**
 ```javascript
-const { checkTranslations, formatOutput } = require('angular-translation-checker');
+const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
 
-const results = await checkTranslations(config);
-const output = formatOutput(results, config);
+const results = analyzeTranslations(config);
+const output = formatOutput(results, 'console', ['summary', 'unused']);
 console.log(output);
 ```
 
-### `formatJSON(results, config)`
+### JSON Output
 
-Formats analysis results as JSON.
+To get JSON formatted output, use `formatOutput()` with 'json' format:
 
-**Parameters:**
-- `results` (Object): Analysis results
-- `config` (Object): Configuration object
+```javascript
+const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
 
-**Returns:**
-- `string`: JSON formatted output
+const results = analyzeTranslations(config);
+const jsonOutput = formatOutput(results, 'json');
+console.log(jsonOutput);
+```
 
-### `formatCSV(results, config)`
+### CSV Output
 
-Formats analysis results as CSV.
+To get CSV formatted output, use `formatOutput()` with 'csv' format:
 
-**Parameters:**
-- `results` (Object): Analysis results
-- `config` (Object): Configuration object
+```javascript
+const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
 
-**Returns:**
-- `string`: CSV formatted output
-
-## Configuration Object
+const results = analyzeTranslations(config);
+const csvOutput = formatOutput(results, 'csv');
+console.log(csvOutput);
+```## Configuration Object
 
 ### Required Properties
 
 | Property | Type | Description |
 |----------|------|-------------|
 | `srcPath` | string | Path to source code directory |
-| `translationsPath` | string | Path to translation files |
-| `defaultLanguage` | string | Default language code |
+| `localesPath` | string | Path to translation files directory |
 
 ### Optional Properties
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `project` | string | `"angular-app"` | Project name |
-| `languages` | string[] | `["en"]` | Language codes |
-| `keySeparator` | string | `"."` | Translation key separator |
+| `keysExtensions` | string[] | `['.ts', '.html']` | File extensions to scan |
+| `configFile` | string | `'./i18n-checker.config.json'` | Configuration file path |
+| `excludeDirs` | string[] | `['node_modules', 'dist', '.git', '.angular', 'coverage']` | Directories to exclude |
+| `outputFormat` | string | `'console'` | Output format (console/json/csv) |
 | `outputSections` | string[] | All sections | Sections to include in output |
-| `format` | string | `"console"` | Output format |
 | `exitOnIssues` | boolean | `false` | Exit with error code if issues found |
-| `ignoreKeys` | string[] | `[]` | Keys to ignore (supports wildcards) |
-| `ignoreDynamicKeys` | boolean | `false` | Ignore dynamic key patterns |
-| `maxUnused` | number | `undefined` | Maximum allowed unused keys |
-| `maxMissing` | number | `undefined` | Maximum allowed missing keys |
+| `verbose` | boolean | `false` | Enable verbose output |
 
-### Pattern Configuration
+### Basic Configuration Example
 
 ```javascript
-{
-  patterns: {
-    typescript: ['*.ts', '*.tsx'],
-    html: ['*.html'],
-    javascript: ['*.js', '*.jsx']
-  }
-}
+const { analyzeTranslations } = require('angular-translation-checker');
+
+const config = {
+  srcPath: './src',
+  localesPath: './src/assets/i18n',
+  outputSections: ['summary', 'unused', 'missing']
+};
+
+const results = analyzeTranslations(config);
+console.log(results);
 ```
 
 ## Results Object
@@ -114,32 +112,24 @@ The analysis results object contains the following structure:
 
 ```javascript
 {
-  // Summary information
-  summary: {
-    totalKeys: number,
-    usedKeys: number,
-    unusedKeys: number,
-    missingKeys: number,
-    languages: string[],
-    coverage: number
-  },
+  // Count information
+  totalKeys: number,                  // Total keys in translation files
+  usedKeysCount: number,              // Count of keys used in source code
+  dynamicMatchedKeysCount: number,    // Count of keys matched by dynamic patterns
+  ignoredKeysCount: number,           // Count of ignored keys
   
-  // Detailed results
-  usedKeys: string[],
-  unusedKeys: string[],
-  missingKeys: {
-    [language]: string[]
-  },
-  translationKeys: {
-    [language]: string[]
-  },
+  // Key arrays
+  unusedKeys: string[],               // Keys in translations but not used in code
+  missingKeys: string[],              // Keys used in code but missing from translations
+  ignoredKeys: string[],              // Keys that were ignored during analysis
+  translationKeys: string[],          // All keys found in translation files
+  usedKeys: string[],                 // All keys found in source code
+  dynamicMatchedKeys: string[],       // Keys matched by dynamic patterns
+  dynamicPatterns: string[],          // Dynamic patterns detected
   
   // Analysis details
-  dynamicPatterns: string[],
-  ignoredKeys: string[],
-  
-  // Configuration used
-  config: Object
+  patternMatches: object,             // Pattern matching details
+  config: object                      // Configuration used for analysis
 }
 ```
 
@@ -149,63 +139,45 @@ The analysis results object contains the following structure:
 
 | Section | Description |
 |---------|-------------|
-| `summary` | Overview statistics and coverage |
-| `missing` | Keys used in code but missing from translations |
-| `unused` | Keys in translations but not used in code |
-| `usedKeys` | All keys found in source code |
-| `translationKeys` | All keys found in translation files |
+| `summary` | Overview statistics and counts |
 | `dynamicPatterns` | Dynamic key patterns detected |
 | `ignored` | Keys that were ignored during analysis |
-| `config` | Configuration used for analysis |
+| `unused` | Keys in translations but not used in code |
+| `missing` | Keys used in code but missing from translations |
+| `usedKeys` | All keys found in source code (verbose) |
+| `translationKeys` | All keys found in translation files (verbose) |
+| `config` | Configuration used for analysis (verbose) |
 
 ### Section Filtering
 
 ```javascript
+const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
+
 // Include only specific sections
-const config = {
-  outputSections: ['summary', 'missing', 'unused']
-};
+const results = analyzeTranslations(config);
+const output = formatOutput(results, 'console', ['summary', 'missing', 'unused']);
+console.log(output);
 
 // All sections (default)
-const config = {
-  outputSections: [
-    'summary',
-    'missing', 
-    'unused',
-    'usedKeys',
-    'translationKeys',
-    'dynamicPatterns',
-    'ignored',
-    'config'
-  ]
-};
+const allOutput = formatOutput(results, 'console');
+console.log(allOutput);
 ```
 
-## Error Handling
+## Available Functions
 
-### Exit Codes
-
-| Code | Description |
-|------|-------------|
-| `0` | Success, no issues found |
-| `1` | Issues found (when `exitOnIssues: true`) |
-| `2` | Configuration error |
-| `3` | File system error |
-
-### Error Types
+The following functions are exported from the library:
 
 ```javascript
-try {
-  const results = await checkTranslations(config);
-} catch (error) {
-  if (error.code === 'CONFIG_ERROR') {
-    console.error('Configuration error:', error.message);
-  } else if (error.code === 'FILE_ERROR') {
-    console.error('File system error:', error.message);
-  } else {
-    console.error('Unexpected error:', error);
-  }
-}
+const {
+  analyzeTranslations,    // Main analysis function
+  getTranslationKeys,     // Get keys from translation files
+  findTranslationUsage,   // Find key usage in source code
+  loadConfig,             // Load configuration from file
+  formatOutput,           // Format results for output
+  detectProjectStructure, // Auto-detect project structure
+  generateConfig,         // Generate default config file
+  defaultConfig           // Default configuration object
+} = require('angular-translation-checker');
 ```
 
 ## CLI Integration
@@ -215,88 +187,32 @@ try {
 | Option | Alias | Type | Description |
 |--------|-------|------|-------------|
 | `--config` | `-c` | string | Configuration file path |
+| `--src-path` | `-s` | string | Source code directory path |
+| `--locales-path` | `-l` | string | Translation files directory path |
 | `--output` | `-o` | string | Output sections (comma-separated) |
 | `--format` | `-f` | string | Output format (console/json/csv) |
+| `--ignore-keys` | | string | Keys to ignore (comma-separated) |
+| `--ignore-patterns` | | string | Patterns to ignore (comma-separated) |
+| `--ignore-files` | | string | Files to ignore (comma-separated) |
 | `--exit-on-issues` | | boolean | Exit with error if issues found |
+| `--verbose` | `-v` | boolean | Enable verbose output |
 | `--help` | `-h` | | Show help information |
-| `--version` | `-v` | | Show version information |
+| `--version` | | | Show version information |
 
-### Programmatic CLI Usage
+### Basic CLI Usage
 
-```javascript
-const { exec } = require('child_process');
+```bash
+# Basic analysis
+ng-i18n-check
 
-exec('ng-i18n-check --output summary --format json', (error, stdout, stderr) => {
-  if (error) {
-    console.error('Error:', error);
-    return;
-  }
-  
-  const results = JSON.parse(stdout);
-  console.log('Analysis complete:', results);
-});
-```
+# With specific paths
+ng-i18n-check --src-path ./src --locales-path ./assets/i18n
 
-## Advanced Usage
+# Output only specific sections
+ng-i18n-check --output summary,missing,unused
 
-### Custom Pattern Matching
-
-```javascript
-const config = {
-  patterns: {
-    // Custom TypeScript patterns
-    typescript: [
-      '**/*.ts',
-      '!**/*.spec.ts',
-      '!**/*.test.ts',
-      '!**/node_modules/**'
-    ],
-    
-    // Custom HTML patterns
-    html: [
-      '**/*.html',
-      '**/*.component.html',
-      '!**/test/**'
-    ]
-  }
-};
-```
-
-### Dynamic Key Detection
-
-```javascript
-const config = {
-  // Enable dynamic key pattern detection
-  ignoreDynamicKeys: false,
-  
-  // Custom ignore patterns for dynamic keys
-  ignoreKeys: [
-    'dynamic.*',
-    'generated.*',
-    '*.temp.*'
-  ]
-};
-```
-
-### Multi-Project Analysis
-
-```javascript
-const projects = [
-  { name: 'web-app', srcPath: './apps/web/src' },
-  { name: 'mobile-app', srcPath: './apps/mobile/src' },
-  { name: 'admin-app', srcPath: './apps/admin/src' }
-];
-
-for (const project of projects) {
-  const config = {
-    ...baseConfig,
-    project: project.name,
-    srcPath: project.srcPath
-  };
-  
-  const results = await checkTranslations(config);
-  console.log(`Results for ${project.name}:`, results);
-}
+# JSON format for CI/CD
+ng-i18n-check --format json --exit-on-issues
 ```
 
 ## TypeScript Definitions
@@ -304,57 +220,47 @@ for (const project of projects) {
 ```typescript
 interface Config {
   srcPath: string;
-  translationsPath: string;
-  defaultLanguage: string;
-  project?: string;
-  languages?: string[];
-  keySeparator?: string;
+  localesPath: string;
+  keysExtensions?: string[];
+  configFile?: string;
+  excludeDirs?: string[];
+  outputFormat?: 'console' | 'json' | 'csv';
   outputSections?: OutputSection[];
-  format?: 'console' | 'json' | 'csv';
   exitOnIssues?: boolean;
-  ignoreKeys?: string[];
-  ignoreDynamicKeys?: boolean;
-  maxUnused?: number;
-  maxMissing?: number;
-  patterns?: {
-    typescript?: string[];
-    html?: string[];
-    javascript?: string[];
-  };
+  verbose?: boolean;
 }
 
 type OutputSection = 
   | 'summary'
-  | 'missing'
-  | 'unused'
-  | 'usedKeys'
-  | 'translationKeys'
   | 'dynamicPatterns'
   | 'ignored'
+  | 'unused'
+  | 'missing'
+  | 'usedKeys'
+  | 'translationKeys'
   | 'config';
 
 interface Results {
-  summary: {
-    totalKeys: number;
-    usedKeys: number;
-    unusedKeys: number;
-    missingKeys: number;
-    languages: string[];
-    coverage: number;
-  };
-  usedKeys: string[];
+  totalKeys: number;
+  usedKeysCount: number;
+  dynamicMatchedKeysCount: number;
+  ignoredKeysCount: number;
   unusedKeys: string[];
-  missingKeys: Record<string, string[]>;
-  translationKeys: Record<string, string[]>;
-  dynamicPatterns: string[];
+  missingKeys: string[];
   ignoredKeys: string[];
+  translationKeys: string[];
+  usedKeys: string[];
+  dynamicMatchedKeys: string[];
+  dynamicPatterns: string[];
+  patternMatches: Record<string, string[]>;
   config: Config;
 }
 
-declare function checkTranslations(config: Config): Promise<Results>;
-declare function formatOutput(results: Results, config: Config): string;
-declare function formatJSON(results: Results, config: Config): string;
-declare function formatCSV(results: Results, config: Config): string;
+declare function analyzeTranslations(config: Config): Results;
+declare function formatOutput(results: Results, format: string, sections?: OutputSection[]): string;
+declare function loadConfig(configPath?: string): Config;
+declare function getTranslationKeys(localesPath: string): string[];
+declare function findTranslationUsage(srcPath: string, keys: string[]): string[];
 ```
 
 Need more help? Check out our [examples](/examples) or [troubleshooting guide](/guide/troubleshooting).
