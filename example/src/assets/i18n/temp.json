@@ -1,0 +1,12 @@
+{
+  "TEMP": {
+    "FEATURE": "Temporary feature",
+    "DATA": "Temporary data",
+    "CACHE": "Temporary cache"
+  },
+  "EXPERIMENTAL_FEATURE": {
+    "TITLE": "Experimental feature title",
+    "DESCRIPTION": "Experimental feature description"
+  },
+  "OLD_FEATURE_DEPRECATED": "This feature is deprecated"
+}

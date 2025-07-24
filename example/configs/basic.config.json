@@ -1,0 +1,6 @@
+{
+  "localesPath": "./src/assets/i18n",
+  "srcPath": "./src",
+  "verbose": false,
+  "outputFormat": "console"
+}

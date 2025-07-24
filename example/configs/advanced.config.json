@@ -1,0 +1,13 @@
+{
+  "localesPath": "./src/assets/i18n",
+  "srcPath": "./src",
+  "keysExtensions": [".ts", ".html"],
+  "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage", "debug"],
+  "outputFormat": "json",
+  "exitOnIssues": true,
+  "verbose": true,
+  "ignoreKeys": ["DEBUG.*", "TEMP.*", "TEST.*", "favicon.ico"],
+  "ignorePatterns": ["INTERNAL.*", "favicon**", "DEV_*"],
+  "ignoreRegex": ["^EXPERIMENTAL_.*", ".*_DEPRECATED$"],
+  "ignoreFiles": ["debug.json", "temp.json", "experimental.json"]
+}

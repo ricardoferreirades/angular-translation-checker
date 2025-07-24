@@ -1,0 +1,15 @@
+{
+  "DEBUG": {
+    "CONSOLE": "Debug console messages",
+    "LOG": "Debug log messages",
+    "TRACE": "Debug trace messages"
+  },
+  "INTERNAL": {
+    "SYSTEM": "Internal system messages",
+    "CONFIG": "Internal configuration"
+  },
+  "DEV_TOOLS": {
+    "PROFILER": "Development profiler",
+    "INSPECTOR": "Development inspector"
+  }
+}

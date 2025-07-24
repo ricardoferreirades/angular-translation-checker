@@ -1,0 +1,7 @@
+{
+  "localesPath": "./src/assets/i18n",
+  "srcPath": "./src",
+  "keysExtensions": [".ts"],
+  "outputFormat": "csv",
+  "verbose": true
+}

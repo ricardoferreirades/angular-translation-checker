@@ -1,0 +1,6 @@
+{
+  "EXPERIMENTAL_ALPHA": "Alpha experimental feature",
+  "EXPERIMENTAL_BETA": "Beta experimental feature",
+  "TEST_DEPRECATED": "Test deprecated feature",
+  "PROTOTYPE_DEPRECATED": "Prototype deprecated feature"
+}
