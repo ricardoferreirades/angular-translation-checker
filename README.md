@@ -45,6 +45,7 @@ A comprehensive tool for analyzing translation keys in Angular projects using ng
 - 🔧 **Function Call Support**: Handles complex dynamic patterns with function calls
 - 📁 **Auto-Detection**: Automatically finds common Angular translation folder structures
 - 📊 **Multiple Formats**: Console, JSON, and CSV output options
+- 🎛️ **Granular Output**: Select specific output sections (summary, unused, missing, ignored, etc.)
 - 🚀 **CI/CD Ready**: Exit codes and automated reporting for pipelines
 - ⚙️ **Configurable**: Flexible configuration options for any project structure
 - 🔧 **Zero Dependencies**: Lightweight with no external dependencies
@@ -73,6 +74,12 @@ ng-i18n-check --init
 
 # Analyze with custom path
 ng-i18n-check --locales-path ./src/assets/i18n
+
+# Show only unused keys (granular output)
+ng-i18n-check --output unused
+
+# Quick summary for CI/CD
+ng-i18n-check --output summary,missing
 ```
 
 ## 🛠️ Try the Live Example
