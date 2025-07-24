@@ -23,7 +23,13 @@
     "example:typescript": "cd example && ../bin/ng-i18n-check.js --config configs/typescript-only.config.json",
     "example:html": "cd example && ../bin/ng-i18n-check.js --config configs/html-only.config.json",
     "example:ignore": "cd example && ../bin/ng-i18n-check.js --config configs/ignore-files.config.json",
-    "example:all": "npm run example:basic && echo '\\n' && npm run example:advanced && echo '\\n' && npm run example:typescript && echo '\\n' && npm run example:html && echo '\\n' && npm run example:ignore",
+    "example:quiet": "cd example && ../bin/ng-i18n-check.js --config configs/quiet-config.json",
+    "example:output-summary": "cd example && ../bin/ng-i18n-check.js --output summary",
+    "example:output-unused": "cd example && ../bin/ng-i18n-check.js --output unused --config configs/quiet-config.json",
+    "example:output-ignored": "cd example && ../bin/ng-i18n-check.js --output ignored --config configs/quiet-config.json",
+    "example:output-missing": "cd example && ../bin/ng-i18n-check.js --output missing --config configs/quiet-config.json",
+    "example:all": "npm run example:basic && echo '\\n' && npm run example:advanced && echo '\\n' && npm run example:typescript && echo '\\n' && npm run example:html && echo '\\n' && npm run example:ignore && echo '\\n' && npm run example:quiet",
+    "example:output-demos": "echo 'Testing Output Sections:' && npm run example:output-summary && echo '\\n' && npm run example:output-unused && echo '\\n' && npm run example:output-ignored && echo '\\n' && npm run example:output-missing",
     "example:demo": "cd example && npm run demo:all-configs",
     "example:install": "cd example && npm install",
     "demo": "npm run example:demo",
@@ -37,7 +43,10 @@
     "internationalization",
     "unused-translations",
     "translation-keys",
-    "angular-cli"
+    "angular-cli",
+    "output-control",
+    "granular-output",
+    "selective-display"
   ],
   "author": {
     "name": "Ricardo Ferreira",
