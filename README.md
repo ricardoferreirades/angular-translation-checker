@@ -2,13 +2,16 @@
 
 [![npm version](https://badge.fury.io/js/angular-translation-checker.svg)](https://badge.fury.io/js/angular-translation-checker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/ricardoferreirades/angular-translation-checker)
 
-A comprehensive tool for analyzing translation keys in Angular projects using ngx-translate. Detect unused translations, missing keys, and keep your i18n files clean and organized.
+**A modern, TypeScript-first translation analysis tool** for Angular projects using ngx-translate. Built with an extensible plugin architecture, professional reporting, and enterprise-grade features for maintaining clean, organized i18n files.
 
 ## 📖 Table of Contents
 
 ### 🚀 Getting Started
 - [✨ Features](#-features)
+- [🆕 What's New in v1.5.0](#-whats-new-in-v150)
 - [📚 Documentation](#-documentation)
 - [🏃 Quick Start](#-quick-start)
 - [🛠️ Try the Live Example](#️-try-the-live-example)
@@ -21,7 +24,7 @@ A comprehensive tool for analyzing translation keys in Angular projects using ng
 - [🔍 Detection Patterns](#-detection-patterns)
 
 ### 📊 Advanced Features
-- [🎉 Latest Enhancements](#-latest-enhancements)
+- [�️ Plugin Architecture](#️-plugin-architecture)
 - [📊 Output Formats](#-output-formats)
 - [🔄 CI/CD Integration](#-cicd-integration)
 - [🏗️ Project Structure Support](#️-project-structure-support)
@@ -37,30 +40,127 @@ A comprehensive tool for analyzing translation keys in Angular projects using ng
 
 ## ✨ Features
 
-- 🔍 **Accurate Detection**: Specifically designed for Angular's `{{ 'key' | translate }}` pipe syntax
+### 🔥 **TypeScript-First Architecture (v1.5.0)**
+- 🛡️ **Full Type Safety**: Complete TypeScript implementation with strict mode
+- 🔌 **Extensible Plugin System**: 5+ plugin types for custom analysis and reporting
+- 🏗️ **Modern Architecture**: Event-driven design with professional logging
+- � **Zero Dependencies**: Lightweight, self-contained TypeScript solution
+
+### 🎯 **Advanced Analysis Capabilities**
+- �🔍 **Accurate Detection**: Specifically designed for Angular's `{{ 'key' | translate }}` pipe syntax
 - ⚡ **Dynamic Pattern Support**: Detects template interpolation, string concatenation, and variable keys
 - 🎯 **Multiple Patterns**: Supports pipes, services, and programmatic usage (static + dynamic)
-- 🧠 **Smart Analysis**: Identifies dynamic key patterns and provides wildcard matching
+- 🧠 **Smart Analysis**: Identifies dynamic key patterns with wildcard matching
 - 🏢 **Enterprise Ready**: Full support for SCREAMING_SNAKE_CASE and underscore patterns
 - 📦 **Constants Detection**: Automatically finds keys in enums, object literals, and class properties
 - 🔧 **Function Call Support**: Handles complex dynamic patterns with function calls
-- 📁 **Auto-Detection**: Automatically finds common Angular translation folder structures
-- 📊 **Multiple Formats**: Console, JSON, and CSV output options
-- 🎛️ **Granular Output**: Select specific output sections (summary, unused, missing, ignored, etc.)
-- 🚀 **CI/CD Ready**: Exit codes and automated reporting for pipelines
-- ⚙️ **Configurable**: Flexible configuration options for any project structure
-- 🔧 **Zero Dependencies**: Lightweight with no external dependencies
-- ✈️ **Live Example**: Complete FlightFinder demo app showcasing real-world usage patterns
 
-## � Documentation
+### � **Professional Reporting & Output**
+- 🎨 **Beautiful Console Output**: Professional Unicode formatting with timestamps
+- 📊 **Multiple Formats**: Console, JSON, CSV, and HTML output options
+- 🎛️ **Granular Output Control**: Select specific sections (summary, unused, missing, ignored, etc.)
+- � **Detailed Reports**: Comprehensive analysis with coverage metrics and recommendations
+- 🔄 **CI/CD Integration**: Exit codes, JSON reports, and automated pipeline support
+
+### ⚙️ **Configuration & Flexibility**
+- 📁 **Auto-Detection**: Automatically finds common Angular translation folder structures
+- ⚙️ **Flexible Configuration**: JSON-based configuration with intelligent defaults
+- 🚫 **Advanced Ignore Patterns**: Regex patterns, wildcard matching, and file exclusions
+- 🌐 **Multi-Language Support**: Analyze specific languages or all available translations
+- 🔧 **Path Customization**: Custom source and locale paths with validation
+
+## 🆕 What's New in v1.5.0
+
+### 🎉 **Complete TypeScript Rewrite**
+Version 1.5.0 introduces a complete TypeScript-first architecture with modern development practices:
+
+```typescript
+// Full TypeScript support with IntelliSense
+import { analyzeTranslations, AnalysisConfig } from 'angular-translation-checker';
+
+const config: AnalysisConfig = {
+  localesPath: './src/assets/i18n',
+  srcPath: './src',
+  outputFormat: 'json'
+};
+
+const result = await analyzeTranslations(config);
+```
+
+### 🔌 **Extensible Plugin Architecture**
+Build custom analysis with our plugin system:
+
+- **Extractors**: Custom key extraction from different file types
+- **Analyzers**: Advanced analysis logic and pattern matching
+- **Formatters**: Custom output formatting (Console, JSON, CSV, HTML)
+- **Validators**: Custom validation rules and checks
+- **Reporters**: Custom reporting and integration capabilities
+
+### 🎨 **Enhanced User Experience**
+- **Professional CLI**: Beautiful help system with examples and workflows
+- **Intelligent Error Handling**: Contextual error messages with actionable suggestions
+- **Modern Output**: Professional console formatting with timestamps and progress indicators
+- **Comprehensive Documentation**: Updated examples, API references, and migration guides
+
+### 🚀 **Developer Experience Improvements**
+- **Build System**: Modern TypeScript compilation with source maps
+- **Development Scripts**: Complete npm script ecosystem for development
+- **Testing Framework**: Comprehensive test suite with TypeScript tests
+- **Type Definitions**: Full TypeScript definitions for IDE support
+
+## 📚 Documentation
 
 📖 **[Complete Documentation](https://ricardoferreirades.github.io/angular-translation-checker/)**
 
-- [Getting Started Guide](https://ricardoferreirades.github.io/angular-translation-checker/guide/)
-- [API Reference](https://ricardoferreirades.github.io/angular-translation-checker/api/)
-- [Configuration Options](https://ricardoferreirades.github.io/angular-translation-checker/guide/configuration)
-- [Examples & Use Cases](https://ricardoferreirades.github.io/angular-translation-checker/examples/)
-- [CLI Commands](https://ricardoferreirades.github.io/angular-translation-checker/guide/cli-commands)
+### 📑 Documentation Sections
+
+- **[Getting Started Guide](https://ricardoferreirades.github.io/angular-translation-checker/guide/)** - Step-by-step setup and basic usage
+- **[TypeScript API Reference](https://ricardoferreirades.github.io/angular-translation-checker/api/)** - Complete API with type definitions
+- **[Configuration Guide](https://ricardoferreirades.github.io/angular-translation-checker/guide/configuration)** - Advanced configuration options
+- **[Plugin Development](https://ricardoferreirades.github.io/angular-translation-checker/plugins/)** - Build custom extractors and formatters
+- **[CLI Commands](https://ricardoferreirades.github.io/angular-translation-checker/guide/cli-commands)** - Comprehensive CLI reference
+- **[Examples & Use Cases](https://ricardoferreirades.github.io/angular-translation-checker/examples/)** - Real-world implementation examples
+- **[Migration Guide](https://ricardoferreirades.github.io/angular-translation-checker/migration/)** - Upgrade from v1.4 to v1.5
+
+### 🔄 Migration from v1.4 to v1.5
+
+The new TypeScript architecture maintains backward compatibility while providing enhanced features:
+
+#### **✅ What Stays the Same**
+- All CLI options work exactly the same
+- Configuration file format is compatible
+- Output formats remain consistent
+- All existing patterns and features work
+
+#### **🚀 What's New**
+- Full TypeScript support with type safety
+- Enhanced error messages with helpful suggestions
+- Professional console output with better formatting
+- Plugin architecture for extensibility
+- Improved performance and reliability
+
+#### **📦 Migration Steps**
+
+1. **Update the package** (no breaking changes):
+   ```bash
+   npm update angular-translation-checker
+   ```
+
+2. **Optional: Regenerate config** (for new features):
+   ```bash
+   ng-i18n-check --generate-config
+   ```
+
+3. **Optional: Update scripts** (for enhanced features):
+   ```json
+   {
+     "scripts": {
+       "i18n:check": "ng-i18n-check -v --output summary,unused,missing"
+     }
+   }
+   ```
+
+That's it! Your existing setup continues to work while gaining all the new TypeScript benefits.
 
 ## �🚀 Quick Start
 
@@ -149,10 +249,35 @@ Add to your `package.json` scripts:
 {
   "scripts": {
     "i18n:check": "ng-i18n-check",
-    "i18n:check-ci": "ng-i18n-check --exit-on-issues",
-    "i18n:report": "ng-i18n-check --format json > i18n-report.json"
+    "i18n:check-detailed": "ng-i18n-check -v --output summary,unused,missing",
+    "i18n:check-ci": "ng-i18n-check --exit-on-issues --format json",
+    "i18n:report": "ng-i18n-check --format json --output summary,unused,missing > i18n-report.json",
+    "i18n:report-html": "ng-i18n-check --format html > reports/i18n-analysis.html",
+    "i18n:config": "ng-i18n-check --generate-config"
   }
 }
+```
+
+### 🎯 Script Usage Examples
+
+```bash
+# Run basic check
+npm run i18n:check
+
+# Generate detailed analysis with verbose output
+npm run i18n:check-detailed
+
+# CI/CD integration (fails build if issues found)
+npm run i18n:check-ci
+
+# Generate JSON report
+npm run i18n:report
+
+# Generate HTML report for team review
+npm run i18n:report-html
+
+# Initialize configuration
+npm run i18n:config
 ```
 
 ## 🎯 Usage
@@ -160,49 +285,159 @@ Add to your `package.json` scripts:
 ### Command Line Interface
 
 ```bash
-ng-i18n-check [options] [command]
+ng-i18n-check [options]
 ```
 
-### Commands
+The TypeScript-first CLI provides a professional, user-friendly experience with comprehensive help and intelligent error handling.
 
-| Command | Description |
-|---------|-------------|
-| `analyze` | Analyze translations (default) |
-| `--init` | Generate configuration file |
-| `--version` | Show version |
-| `--help` | Show help |
-
-### Options
+### 📋 Core Options
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `-l, --locales-path <path>` | Path to translation files | Auto-detected |
-| `-s, --src-path <path>` | Path to source files | `./src` |
-| `-f, --format <format>` | Output format (console, json, csv) | `console` |
-| `-c, --config <path>` | Config file path | `./i18n-checker.config.json` |
-| `--exit-on-issues` | Exit with error code if issues found | `false` |
-| `-v, --verbose` | Verbose output | `false` |
+| `-l, --locales-path <path>` | Path to translation files directory | `./src/assets/i18n` |
+| `-s, --src-path <path>` | Path to source code directory | `./src` |
+| `-f, --format <format>` | Output format: `console`, `json`, `csv` | `console` |
+| `-o, --output <sections>` | Output sections (comma-separated) | All sections |
+| `-c, --config <path>` | Configuration file path | `./.ng-i18n-check.json` |
+| `--ignore-keys <patterns>` | Ignore key patterns (comma-separated regex) | - |
+| `--languages <langs>` | Specific languages to check (e.g., `en,es,fr`) | All languages |
+| `--exit-on-issues` | Exit with error code if translation issues found | `false` |
+| `-v, --verbose` | Enable verbose logging and detailed output | `false` |
+| `--generate-config` | Generate a default configuration file | - |
+| `--help, -h` | Show comprehensive help with examples | - |
+| `--version` | Show version information and features | - |
 
-### Examples
+### 🎛️ Output Sections
+
+Control exactly what information you want to see:
+
+| Section | Description |
+|---------|-------------|
+| `summary` | Analysis summary with counts and coverage |
+| `dynamicPatterns` | Dynamic key patterns detected |
+| `ignored` | Keys ignored by configuration |
+| `unused` | Translation keys not used in source code |
+| `missing` | Keys used in source but missing from translations |
+| `usedKeys` | All keys found in source code |
+| `translationKeys` | All available translation keys |
+| `config` | Current configuration settings |
+
+### 💡 Usage Examples
 
 ```bash
-# Basic analysis with auto-detection
+# Basic analysis with default settings
 ng-i18n-check
 
-# Generate configuration file
-ng-i18n-check --init
+# Analyze specific paths with verbose output
+ng-i18n-check -l ./assets/i18n -s ./src -v
 
-# Custom translation path
-ng-i18n-check --locales-path ./assets/i18n
+# Show only critical information
+ng-i18n-check --output summary,unused,missing
 
-# JSON output for reporting
-ng-i18n-check --format json > translation-report.json
+# Generate JSON report and save to file
+ng-i18n-check --format json --output summary,unused > translation-report.json
 
-# CI/CD integration
-ng-i18n-check --exit-on-issues
+# Check only specific languages with custom config
+ng-i18n-check --languages en,es --config ./my-i18n-config.json
 
-# Verbose mode for debugging
-ng-i18n-check --verbose
+# CI/CD: Exit with error if issues found
+ng-i18n-check --exit-on-issues --output summary
+
+# Generate configuration file for your project
+ng-i18n-check --generate-config
+
+# Ignore specific key patterns (useful for dynamic keys)
+ng-i18n-check --ignore-keys "DYNAMIC_.*,TEST_.*"
+```
+
+### 🔄 Common Workflows
+
+```bash
+# 1. First time setup
+ng-i18n-check --generate-config
+
+# 2. Regular analysis
+ng-i18n-check
+
+# 3. Detailed inspection
+ng-i18n-check -v --output summary,unused,missing
+
+# 4. CI/CD integration
+ng-i18n-check --exit-on-issues --format json
+```
+
+[⬆️ Back to Table of Contents](#-table-of-contents)
+
+## 🏗️ Plugin Architecture
+
+### 🔌 Extensible Design
+
+Version 1.5.0 introduces a powerful plugin system that allows for custom analysis, formatting, and reporting:
+
+```typescript
+import { 
+  ExtractorPlugin, 
+  AnalyzerPlugin, 
+  FormatterPlugin,
+  PluginContext 
+} from 'angular-translation-checker';
+
+// Custom extractor for special file types
+class CustomExtractor implements ExtractorPlugin {
+  readonly name = 'custom-extractor';
+  readonly version = '1.0.0';
+  readonly supportedExtensions = ['.vue', '.svelte'];
+  
+  async extractKeys(filePath: string, content: string) {
+    // Custom extraction logic
+    return translationKeys;
+  }
+}
+```
+
+### 🧩 Built-in Plugins
+
+The tool comes with professional-grade plugins out of the box:
+
+#### **Extractors**
+- **TypeScript Extractor**: Handles `.ts` files with advanced pattern matching
+- **HTML Extractor**: Processes `.html` templates with Angular pipe syntax
+
+#### **Analyzers**
+- **Core Analyzer**: Main analysis engine with pattern detection and validation
+
+#### **Formatters**
+- **Console Formatter**: Professional terminal output with Unicode formatting
+- **JSON Formatter**: Structured JSON reports with metadata
+- **HTML Formatter**: Rich HTML reports with interactive features
+
+#### **Reporters**
+- **File Reporter**: Automated file output with customizable naming
+
+### 🎯 Plugin Types
+
+| Plugin Type | Purpose | Interface |
+|-------------|---------|-----------|
+| **Extractor** | Extract translation keys from files | `ExtractorPlugin` |
+| **Analyzer** | Analyze extracted data and detect patterns | `AnalyzerPlugin` |
+| **Formatter** | Format analysis results for output | `FormatterPlugin` |
+| **Validator** | Custom validation rules and checks | `ValidatorPlugin` |
+| **Reporter** | Handle result reporting and integration | `ReporterPlugin` |
+
+### 🔧 Plugin Development
+
+Create custom plugins to extend functionality:
+
+```typescript
+// Custom formatter example
+export class MarkdownFormatter implements FormatterPlugin {
+  readonly name = 'markdown-formatter';
+  readonly outputFormat = 'markdown' as const;
+  
+  async format(result: AnalysisResult, sections: OutputSection[]) {
+    return `# Translation Analysis\n\n${this.formatSummary(result)}`;
+  }
+}
 ```
 
 [⬆️ Back to Table of Contents](#-table-of-contents)
@@ -222,26 +457,39 @@ The tool automatically detects common Angular translation structures:
 
 ### Configuration File
 
-Generate a configuration file:
+Generate a configuration file using the new TypeScript CLI:
 
 ```bash
-ng-i18n-check --init
+ng-i18n-check --generate-config
 ```
 
-This creates `i18n-checker.config.json`:
+This creates `angular-translation-checker.config.json` with intelligent defaults:
 
 ```json
 {
   "localesPath": "./src/assets/i18n",
   "srcPath": "./src",
-  "keysExtensions": [".ts", ".html"],
-  "excludeDirs": ["node_modules", "dist", ".git", ".angular", "coverage"],
   "outputFormat": "console",
-  "exitOnIssues": false,
-  "verbose": false,
+  "outputSections": ["summary", "unused", "missing"],
+  "patterns": {
+    "typescript": [
+      "\\b(?:translate\\.get|translate\\.instant|translate\\.stream)\\s*\\(\\s*['\"]([^'\"]+)['\"]",
+      "\\b(?:translate)\\s*:\\s*['\"]([^'\"]+)['\"]",
+      "\\[\\s*['\"]([^'\"]+)['\"]\\s*\\]\\s*\\|\\s*translate"
+    ],
+    "html": [
+      "{{\\s*['\"]([^'\"]+)['\"]\\s*\\|\\s*translate",
+      "\\[translate\\]\\s*=\\s*['\"]([^'\"]+)['\"]",
+      "translate=['\"]([^'\"]+)['\"]"
+    ]
+  },
   "ignoreKeys": [],
-  "ignorePatterns": [],
-  "ignoreRegex": [],
+  "ignoreFiles": ["**/node_modules/**", "**/dist/**"],
+  "languages": [],
+  "exitOnIssues": false,
+  "verbose": false
+}
+```
   "ignoreFiles": []
 }
 ```
@@ -605,40 +853,103 @@ export class AccessControlComponent {
 
 **Result**: Comprehensive detection of all translation patterns in enterprise applications! 🎉
 
-## �📊 Output Formats
+## 📊 Output Formats
 
-### Console Output (Default)
+### 🎨 Console Output (Default)
+
+The new TypeScript CLI provides beautiful, professional console output:
 
 ```
-🔍 Analyzing translations...
+┌─ Angular Translation Checker Analysis ─────────────────────────┐
+│ Analysis completed at: 2025-07-27 18:12:47                │
+│ Languages analyzed: en, es, fr, de                            │
+└─────────────────────────────────────────────────────────────────┘
 
-📊 Translation Analysis Results:
-   Total translation keys: 92
-   Used keys (static): 27
-   Used keys (dynamic patterns): 25
-   Unused keys: 53
-   Missing keys: 8
+Translation Summary
+--------------------
+Languages: en, es, fr, de
+Total translations: 156
+Used keys: 89
+Unused keys: 67
+Missing keys: 12
+Coverage: 57%
 
-🚨 Unused translation keys:
-   - menu.settings
-   - buttons.advanced
-   - footer.copyright
+🚨 Missing Keys (12):
+   • common.new.feature
+   • dashboard.widgets.chart
+   • navigation.admin.users
 
-✅ All translations are properly analyzed!
+⚠️  Unused Keys (67):
+   • menu.settings.old
+   • buttons.advanced.deprecated
+   • footer.copyright.2023
 ```
 
-### JSON Output
+### 📋 JSON Output
+
+Perfect for CI/CD integration and automated reporting:
 
 ```bash
-ng-i18n-check --format json
+ng-i18n-check --format json --output summary,unused
 ```
 
 ```json
 {
-  "totalKeys": 92,
-  "usedKeysCount": 52,
-  "unusedKeys": ["menu.settings", "buttons.advanced"],
-  "missingKeys": ["common.new.feature"],
+  "metadata": {
+    "generatedAt": "2025-07-27T18:12:47.000Z",
+    "tool": "angular-translation-checker",
+    "version": "1.5.0",
+    "analyzedFiles": "./src",
+    "localesPath": "./src/assets/i18n"
+  },
+  "summary": {
+    "totalTranslations": 156,
+    "totalUsedKeys": 89,
+    "totalUnusedKeys": 67,
+    "totalMissingKeys": 12,
+    "coverage": 57,
+    "languages": ["en", "es", "fr", "de"]
+  },
+  "analysis": {
+    "unused": [
+      "menu.settings.old",
+      "buttons.advanced.deprecated",
+      "footer.copyright.2023"
+    ]
+  }
+}
+```
+
+### 📊 CSV Output
+
+Perfect for spreadsheet analysis and data processing:
+
+```bash
+ng-i18n-check --format csv --output unused,missing
+```
+
+```csv
+Type,Key,File,Line,Language,Status
+unused,menu.settings.old,,,,deprecated
+unused,buttons.advanced.deprecated,,,,deprecated
+missing,common.new.feature,src/app/dashboard.ts,42,en,missing
+missing,navigation.admin.users,src/app/admin.html,15,es,missing
+```
+
+### 🌐 HTML Output
+
+Rich, interactive reports perfect for team reviews:
+
+```bash
+ng-i18n-check --format html > reports/translation-analysis.html
+```
+
+Generates a comprehensive HTML report with:
+- **Interactive tables** with sorting and filtering
+- **Visual coverage charts** and statistics
+- **Syntax-highlighted code examples**
+- **Responsive design** for mobile and desktop viewing
+- **Export capabilities** to PDF and other formats
   "translationKeys": [...],
   "usedKeys": [...]
 }
