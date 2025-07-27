@@ -1,10 +1,10 @@
-# CLI Commands
+# CLI Commands - TypeScript Edition
 
-Angular Translation Checker provides a comprehensive command-line interface for analyzing translations in your Angular projects. This reference covers all available commands, options, and usage patterns.
+Angular Translation Checker v1.5.0 provides a modern, TypeScript-first command-line interface with professional user experience, intelligent error handling, and beautiful output formatting.
 
-## Installation
+## 🚀 Installation
 
-### Global Installation
+### Global Installation (Recommended)
 ```bash
 npm install -g angular-translation-checker
 ```
@@ -19,34 +19,50 @@ npm install --save-dev angular-translation-checker
 npx angular-translation-checker [options]
 ```
 
-## Basic Command
+## 🎯 Basic Command
 
 ### `ng-i18n-check`
 
-The main command for running translation analysis.
+The main command for running translation analysis with enhanced TypeScript CLI.
 
 ```bash
 ng-i18n-check [options]
 ```
 
-## Command Options
+**✨ New in v1.5.0:**
+- Professional Unicode-formatted output with timestamps
+- Intelligent error messages with actionable suggestions
+- Enhanced help system with 8 real-world examples
+- Beautiful version display with feature showcase
+
+## 📋 Command Options
 
 ### Core Options
 
 | Option | Alias | Type | Default | Description |
 |--------|-------|------|---------|-------------|
-| `--config` | `-c` | string | | Path to configuration file |
+| `--config` | `-c` | string | `./.ng-i18n-check.json` | Configuration file path |
 | `--src-path` | `-s` | string | `./src` | Source code directory |
 | `--locales-path` | `-l` | string | `./src/assets/i18n` | Translation files directory |
 
-### Output Control
+### Output Control (Enhanced in v1.5.0)
 
 | Option | Alias | Type | Default | Description |
 |--------|-------|------|---------|-------------|
 | `--output` | `-o` | string | all sections | Comma-separated output sections |
-| `--format` | `-f` | string | `console` | Output format (console/json/csv) |
+| `--format` | `-f` | string | `console` | Output format: `console`, `json`, `csv`, `html` |
 | `--exit-on-issues` | | boolean | `false` | Exit with error code if issues found |
-| `--verbose` | `-v` | boolean | `false` | Verbose output |
+| `--verbose` | `-v` | boolean | `false` | Enhanced verbose output with plugin information |
+
+### New Options in v1.5.0
+
+| Option | Alias | Type | Default | Description |
+|--------|-------|------|---------|-------------|
+| `--generate-config` | | boolean | `false` | Generate intelligent configuration file |
+| `--ignore-keys` | | string | | Ignore key patterns (comma-separated regex) |
+| `--languages` | | string | | Specific languages to check (e.g., `en,es,fr`) |
+| `--help` | `-h` | boolean | `false` | Show comprehensive help with examples |
+| `--version` | | boolean | `false` | Show beautiful version display with features |
 
 ### Filtering Options
 

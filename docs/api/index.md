@@ -1,50 +1,81 @@
-# API Reference
+# API Reference - TypeScript Edition
 
-This section provides comprehensive documentation for the Angular Translation Checker API, including all available functions, options, and return values.
+This section provides comprehensive documentation for the Angular Translation Checker TypeScript API, including all available functions, types, and interfaces with full type safety.
+
+## 🚀 TypeScript-First API (v1.5.0)
+
+The new TypeScript architecture provides full type safety, IntelliSense support, and modern development experience.
+
+### Installation
+
+```bash
+npm install angular-translation-checker
+```
+
+### TypeScript Import
+
+```typescript
+import {
+  analyzeTranslations,
+  AnalysisConfig,
+  AnalysisResult,
+  OutputFormat,
+  OutputSection
+} from 'angular-translation-checker';
+```
 
 ## Core Functions
 
-### `analyzeTranslations(config)`
+### `analyzeTranslations(configPath?, configOverrides?)`
 
-Main function that analyzes translation usage in your Angular project.
+Main async function that analyzes translation usage in your Angular project with full TypeScript support.
+
+**Type Signature:**
+```typescript
+async function analyzeTranslations(
+  configPath?: string,
+  configOverrides?: Partial<AnalysisConfig>
+): Promise<{
+  result: AnalysisResult;
+  output: string;
+  hasIssues: boolean;
+}>
+```
 
 **Parameters:**
-- `config` (Object): Configuration object
+- `configPath` (string, optional): Path to configuration file
+- `configOverrides` (Partial<AnalysisConfig>, optional): Configuration overrides
 
 **Returns:**
-- `Object`: Analysis results (synchronous)
+- `Promise<AnalysisResult>`: Complete analysis results with TypeScript types
 
-**Example:**
+**TypeScript Example:**
+```typescript
+import { analyzeTranslations, AnalysisConfig } from 'angular-translation-checker';
+
+const config: Partial<AnalysisConfig> = {
+  localesPath: './src/assets/i18n',
+  srcPath: './src',
+  outputFormat: 'json'
+};
+
+const { result, output, hasIssues } = await analyzeTranslations(undefined, config);
+
+// Full type safety and IntelliSense
+console.log(`Found ${result.summary.totalTranslations} translations`);
+console.log(`Coverage: ${result.summary.coverage}%`);
+```
+
+**JavaScript Example (still supported):**
 ```javascript
 const { analyzeTranslations } = require('angular-translation-checker');
 
 const config = {
-  srcPath: './src',
-  localesPath: './src/assets/i18n'
+  localesPath: './src/assets/i18n',
+  srcPath: './src'
 };
 
-const results = analyzeTranslations(config);
-console.log(results);
-```
-
-### `formatOutput(results, format, sections)`
-
-Formats analysis results for different output types.
-
-**Parameters:**
-- `results` (Object): Analysis results from `analyzeTranslations()`
-- `format` (string): Output format ('console', 'json', 'csv')
-- `sections` (Array): Optional array of sections to include
-
-**Returns:**
-- `string`: Formatted output
-
-**Example:**
-```javascript
-const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
-
-const results = analyzeTranslations(config);
-const output = formatOutput(results, 'console', ['summary', 'unused']);
+const { result, output } = await analyzeTranslations(undefined, config);
 console.log(output);
 ```
 
