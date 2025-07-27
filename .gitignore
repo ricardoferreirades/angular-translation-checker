@@ -69,3 +69,8 @@ test/test-config.json
 FEATURE_ROADMAP.md
 DOCUMENTATION_AUDIT.md
 NEW-SCRIPTS.md
+
+# Ignore user-generated configuration files
+angular-translation-checker.config.json
+i18n-checker.config.json
+*.config.json
