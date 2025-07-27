@@ -18,6 +18,8 @@ import { TypeScriptExtractor } from './plugins/extractors/typescript-extractor';
 import { HtmlExtractor } from './plugins/extractors/html-extractor';
 import { CoreAnalyzer } from './plugins/analyzers/core-analyzer';
 import { ConsoleFormatter } from './plugins/formatters/console-formatter';
+import { JsonFormatter } from './plugins/formatters/json-formatter';
+import { HtmlFormatter } from './plugins/formatters/html-formatter';
 import { AnalysisConfig } from './types';
 
 /**
@@ -48,6 +50,8 @@ export async function registerBuiltInPlugins(
   
   // Register formatters
   await pluginManager.registerPlugin(new ConsoleFormatter(), config);
+  await pluginManager.registerPlugin(new JsonFormatter(), config);
+  await pluginManager.registerPlugin(new HtmlFormatter(), config);
 }
 
 /**

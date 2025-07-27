@@ -243,7 +243,11 @@ export class TranslationChecker {
             const matches = await this.fileSystem.glob(pattern, { 
               cwd: config.srcPath 
             });
-            files.push(...matches);
+            // Convert relative paths to absolute paths
+            const absolutePaths = matches.map(relativePath => 
+              `${config.srcPath}/${relativePath}`
+            );
+            files.push(...absolutePaths);
           }
         }
       }
