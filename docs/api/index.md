@@ -47,7 +47,7 @@ async function analyzeTranslations(
 - `configOverrides` (Partial<AnalysisConfig>, optional): Configuration overrides
 
 **Returns:**
-- `Promise<AnalysisResult>`: Complete analysis results with TypeScript types
+- `Promise<{ result: AnalysisResult; output: string; hasIssues: boolean }>`: Complete analysis results
 
 **TypeScript Example:**
 ```typescript
@@ -64,6 +64,11 @@ const { result, output, hasIssues } = await analyzeTranslations(undefined, confi
 // Full type safety and IntelliSense
 console.log(`Found ${result.summary.totalTranslations} translations`);
 console.log(`Coverage: ${result.summary.coverage}%`);
+
+if (hasIssues) {
+  console.log('Translation issues found!');
+  process.exit(1);
+}
 ```
 
 **JavaScript Example (still supported):**
@@ -75,32 +80,38 @@ const config = {
   srcPath: './src'
 };
 
-const { result, output } = await analyzeTranslations(undefined, config);
+const { result, output, hasIssues } = await analyzeTranslations(undefined, config);
 console.log(output);
 ```
 
-### JSON Output
+### Plugin System Functions
 
-To get JSON formatted output, use `formatOutput()` with 'json' format:
+For advanced usage, you can also work directly with the plugin system:
 
-```javascript
-const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
+```typescript
+import { 
+  createTranslationChecker,
+  TranslationChecker,
+  ConsoleFormatter,
+  JsonFormatter 
+} from 'angular-translation-checker';
 
-const results = analyzeTranslations(config);
-const jsonOutput = formatOutput(results, 'json');
-console.log(jsonOutput);
-```
+// Create a checker instance
+const checker = await createTranslationChecker();
 
-### CSV Output
+// Initialize with configuration
+const config = await checker.initialize('./config.json');
 
-To get CSV formatted output, use `formatOutput()` with 'csv' format:
+// Run analysis
+const result = await checker.analyze(config);
 
-```javascript
-const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
+// Format output
+const output = await checker.format(result, 'console', ['summary', 'unused']);
 
-const results = analyzeTranslations(config);
-const csvOutput = formatOutput(results, 'csv');
-console.log(csvOutput);
+console.log(output);
+
+// Always cleanup
+await checker.cleanup();
 ```## Configuration Object
 
 ### Required Properties
@@ -179,36 +190,54 @@ The analysis results object contains the following structure:
 | `translationKeys` | All keys found in translation files (verbose) |
 | `config` | Configuration used for analysis (verbose) |
 
-### Section Filtering
+### Output Formatting
 
-```javascript
-const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
+The `analyzeTranslations()` function returns formatted output directly. For custom formatting, use the plugin system:
 
-// Include only specific sections
-const results = analyzeTranslations(config);
-const output = formatOutput(results, 'console', ['summary', 'missing', 'unused']);
+```typescript
+import { analyzeTranslations, JsonFormatter, ConsoleFormatter } from 'angular-translation-checker';
+
+// Get formatted output directly from main function
+const { output, result, hasIssues } = await analyzeTranslations('./config.json');
 console.log(output);
 
-// All sections (default)
-const allOutput = formatOutput(results, 'console');
-console.log(allOutput);
+// Or use formatters directly with results
+const jsonFormatter = new JsonFormatter();
+const jsonOutput = await jsonFormatter.format(result, {});
+
+const consoleFormatter = new ConsoleFormatter();
+const consoleOutput = await consoleFormatter.format(result, { sections: ['summary', 'unused'] });
 ```
 
-## Available Functions
+## Available Functions and Classes
 
-The following functions are exported from the library:
+The following TypeScript functions and classes are exported from the library:
 
-```javascript
-const {
-  analyzeTranslations,    // Main analysis function
-  getTranslationKeys,     // Get keys from translation files
-  findTranslationUsage,   // Find key usage in source code
-  loadConfig,             // Load configuration from file
-  formatOutput,           // Format results for output
-  detectProjectStructure, // Auto-detect project structure
-  generateConfig,         // Generate default config file
-  defaultConfig           // Default configuration object
-} = require('angular-translation-checker');
+```typescript
+import {
+  // Main API Functions
+  analyzeTranslations,        // Main analysis function
+  createTranslationChecker,   // Create checker instance
+  registerBuiltInPlugins,     // Register default plugins
+  
+  // Core Classes
+  TranslationChecker,         // Main checker class
+  PluginManager,              // Plugin management
+  
+  // Built-in Plugins
+  NgxTranslateExtractor,      // Extract ngx-translate keys
+  CodeUsageAnalyzer,          // Analyze code usage
+  ConsoleFormatter,           // Console output
+  JsonFormatter,              // JSON output
+  MarkdownFormatter,          // Markdown output
+  CsvFormatter,               // CSV output
+  
+  // Configuration
+  loadConfig,                 // Load configuration from file
+  detectProjectStructure,     // Auto-detect project structure
+  generateConfig,             // Generate default config file
+  defaultConfig               // Default configuration object
+} from 'angular-translation-checker';
 ```
 
 ## CLI Integration
@@ -266,10 +295,96 @@ type OutputSection =
   | 'dynamicPatterns'
   | 'ignored'
   | 'unused'
-  | 'missing'
+    | 'missing'
   | 'usedKeys'
   | 'translationKeys'
   | 'config';
+
+## TypeScript Type Definitions
+
+```typescript
+// Main API function signature
+declare function analyzeTranslations(
+  configPath?: string,
+  configOverrides?: Partial<AnalysisConfig>
+): Promise<{
+  result: AnalysisResult;
+  output: string;
+  hasIssues: boolean;
+}>;
+
+// Plugin system functions
+declare function createTranslationChecker(): Promise<TranslationChecker>;
+declare function registerBuiltInPlugins(pluginManager: PluginManager): Promise<void>;
+
+// Configuration functions
+declare function loadConfig(configPath?: string): Promise<AnalysisConfig>;
+declare function generateConfig(projectPath: string): Promise<void>;
+declare function detectProjectStructure(projectPath: string): Promise<Partial<AnalysisConfig>>;
+
+// Core interfaces
+interface AnalysisConfig {
+  localesPath: string;
+  srcPath: string;
+  ignorePaths?: string[];
+  ignoreKeys?: string[];
+  languages: string[];
+  defaultLanguage: string;
+  outputFormat: 'console' | 'json' | 'markdown' | 'csv';
+  plugins?: {
+    extractors?: PluginConfig[];
+    analyzers?: PluginConfig[];
+    formatters?: PluginConfig[];
+    validators?: PluginConfig[];
+    reporters?: PluginConfig[];
+  };
+}
+
+interface AnalysisResult {
+  summary: {
+    totalTranslations: number;
+    usedTranslations: number;
+    unusedTranslations: number;
+    missingTranslations: number;
+    coverage: number;
+  };
+  issues: {
+    unused: UnusedTranslation[];
+    missing: MissingTranslation[];
+    duplicates: DuplicateTranslation[];
+    malformed: MalformedTranslation[];
+  };
+  suggestions: string[];
+  performance: {
+    analysisTime: number;
+    memoryUsage: number;
+    filesProcessed: number;
+  };
+}
+
+interface UnusedTranslation {
+  key: string;
+  path?: string;
+  line?: number;
+  languages: string[];
+}
+
+interface MissingTranslation {
+  key: string;
+  path?: string;
+  line?: number;
+  languages: string[];
+}
+
+interface TranslationChecker {
+  initialize(configPath?: string): Promise<AnalysisConfig>;
+  analyze(config: AnalysisConfig): Promise<AnalysisResult>;
+  format(result: AnalysisResult, format: string, sections?: string[]): Promise<string>;
+  cleanup(): Promise<void>;
+}
+```
+
+Need more help? Check out our [examples](/examples/) or [troubleshooting guide](/guide/troubleshooting).
 
 interface Results {
   totalKeys: number;

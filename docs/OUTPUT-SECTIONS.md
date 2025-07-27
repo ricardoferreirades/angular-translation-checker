@@ -44,17 +44,24 @@ ng-i18n-check --output summary,dynamicPatterns,unused,missing
 
 ### Programmatic Usage
 
-```javascript
-const { analyzeTranslations, formatOutput } = require('angular-translation-checker');
+```typescript
+import { analyzeTranslations, ConsoleFormatter } from 'angular-translation-checker';
 
-const results = analyzeTranslations({
+// Using main function with output format selection
+const { result, output } = await analyzeTranslations(undefined, {
   localesPath: './src/assets/i18n',
-  srcPath: './src'
+  srcPath: './src',
+  outputFormat: 'console'
 });
 
-// Show only summary and unused keys
-const output = formatOutput(results, 'console', ['summary', 'unused']);
-console.log(output);
+console.log(output); // Pre-formatted with default sections
+
+// Using formatters directly for custom sections
+const formatter = new ConsoleFormatter();
+const customOutput = await formatter.format(result, {
+  sections: ['summary', 'unused']
+});
+console.log(customOutput);
 ```
 
 ## Output Formats

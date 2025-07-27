@@ -107,19 +107,55 @@ const config = {
 }
 ```
 
-## Formatting Functions
+## Output Formatting
 
-### `formatOutput(results, config)`
+### Using analyzeTranslations with output formatting
 
-Formats analysis results for console display.
+The main function returns formatted output directly:
 
-```javascript
-const { checkTranslations, formatOutput } = require('angular-translation-checker');
+```typescript
+import { analyzeTranslations, AnalysisConfig } from 'angular-translation-checker';
 
-async function generateConsoleReport() {
-  const results = await checkTranslations(config);
-  const output = formatOutput(results, config);
-  console.log(output);
+async function generateReport() {
+  const config: Partial<AnalysisConfig> = {
+    localesPath: './src/assets/i18n',
+    srcPath: './src',
+    outputFormat: 'console'
+  };
+  
+  const { result, output, hasIssues } = await analyzeTranslations(undefined, config);
+  console.log(output); // Pre-formatted output
+  
+  return { result, hasIssues };
+}
+```
+
+### Using plugin system for custom formatting
+
+```typescript
+import { 
+  createTranslationChecker,
+  ConsoleFormatter,
+  JsonFormatter 
+} from 'angular-translation-checker';
+
+async function customFormattedReport() {
+  const checker = await createTranslationChecker();
+  const config = await checker.initialize('./config.json');
+  const result = await checker.analyze(config);
+  
+  // Format with console formatter
+  const consoleFormatter = new ConsoleFormatter();
+  const consoleOutput = await consoleFormatter.format(result, { 
+    sections: ['summary', 'unused'] 
+  });
+  
+  // Format with JSON formatter
+  const jsonFormatter = new JsonFormatter();
+  const jsonOutput = await jsonFormatter.format(result, {});
+  
+  await checker.cleanup();
+  return { consoleOutput, jsonOutput };
 }
 ```
 
@@ -127,7 +163,7 @@ async function generateConsoleReport() {
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `results` | `AnalysisResults` | Yes | Results from `checkTranslations()` |
+| `configPath` | `string` | No | Path to configuration file |
 | `config` | `object` | Yes | Configuration object |
 
 #### Returns
@@ -135,37 +171,47 @@ async function generateConsoleReport() {
 - **Type**: `string`
 - **Description**: Formatted console output
 
-### `formatJSON(results, config)`
+### JSON Output Format
 
-Formats analysis results as JSON.
+Get JSON formatted output using the main function:
 
-```javascript
-const { checkTranslations, formatJSON } = require('angular-translation-checker');
+```typescript
+import { analyzeTranslations, AnalysisConfig } from 'angular-translation-checker';
 
 async function generateJSONReport() {
-  const results = await checkTranslations(config);
-  const jsonOutput = formatJSON(results, config);
+  const config: Partial<AnalysisConfig> = {
+    localesPath: './src/assets/i18n',
+    srcPath: './src',
+    outputFormat: 'json'
+  };
   
-  // Save to file
+  const { output, result, hasIssues } = await analyzeTranslations(undefined, config);
+  
+  // Save JSON output to file
   const fs = require('fs');
-  fs.writeFileSync('translation-report.json', jsonOutput);
+  fs.writeFileSync('translation-report.json', output);
   
   // Or parse for processing
-  const report = JSON.parse(jsonOutput);
+  const report = JSON.parse(output);
   console.log(`Coverage: ${report.summary.coverage}%`);
 }
 ```
 
-### `formatCSV(results, config)`
+### CSV Output Format
 
-Formats analysis results as CSV.
+Get CSV formatted output using the main function:
 
-```javascript
-const { checkTranslations, formatCSV } = require('angular-translation-checker');
+```typescript
+import { analyzeTranslations, AnalysisConfig } from 'angular-translation-checker';
 
 async function generateCSVReport() {
-  const results = await checkTranslations(config);
-  const csvOutput = formatCSV(results, config);
+  const config: Partial<AnalysisConfig> = {
+    localesPath: './src/assets/i18n',
+    srcPath: './src',
+    outputFormat: 'csv'
+  };
+  
+  const { output } = await analyzeTranslations(undefined, config);
   
   const fs = require('fs');
   fs.writeFileSync('translation-report.csv', csvOutput);
@@ -176,26 +222,30 @@ async function generateCSVReport() {
 
 ### Configuration Loading
 
-```javascript
-const { loadConfig, checkTranslations } = require('angular-translation-checker');
+```typescript
+import { loadConfig, analyzeTranslations } from 'angular-translation-checker';
 
 // Load from file
 const config = await loadConfig('./translation.config.json');
 
 // Merge with overrides
-const finalConfig = {
+const configWithOverrides = {
   ...config,
-  exitOnIssues: true,
-  outputSections: ['missing']
+  outputFormat: 'json' as const
 };
 
-const results = await checkTranslations(finalConfig);
+const { result, output, hasIssues } = await analyzeTranslations(undefined, configWithOverrides);
+
+if (hasIssues) {
+  console.error('Translation issues found!');
+  process.exit(1);
+}
 ```
 
 ### Multiple Project Analysis
 
-```javascript
-const { checkTranslations } = require('angular-translation-checker');
+```typescript
+import { analyzeTranslations, AnalysisConfig } from 'angular-translation-checker';
 
 async function analyzeMultipleProjects() {
   const projects = [
