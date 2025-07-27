@@ -422,4 +422,4 @@ Check out the [plugin examples repository](https://github.com/ricardoferreirades
 
 ## Plugin API Reference
 
-For complete type definitions and interfaces, see the [TypeScript API Reference](/api/plugins).
+For complete type definitions and interfaces, see the [TypeScript API Reference](/api/).

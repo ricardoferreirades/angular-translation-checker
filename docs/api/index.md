@@ -34,20 +34,20 @@ Main async function that analyzes translation usage in your Angular project with
 ```typescript
 async function analyzeTranslations(
   configPath?: string,
-  configOverrides?: Partial<AnalysisConfig>
-): Promise<{
+  configOverrides?: Partial&lt;AnalysisConfig&gt;
+): Promise&lt;{
   result: AnalysisResult;
   output: string;
   hasIssues: boolean;
-}>
+}&gt;
 ```
 
 **Parameters:**
 - `configPath` (string, optional): Path to configuration file
-- `configOverrides` (Partial<AnalysisConfig>, optional): Configuration overrides
+- `configOverrides` (Partial&lt;AnalysisConfig&gt;, optional): Configuration overrides
 
 **Returns:**
-- `Promise<{ result: AnalysisResult; output: string; hasIssues: boolean }>`: Complete analysis results
+- `Promise&lt;{ result: AnalysisResult; output: string; hasIssues: boolean }&gt;`: Complete analysis results
 
 **TypeScript Example:**
 ```typescript
