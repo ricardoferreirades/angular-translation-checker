@@ -2,20 +2,20 @@
 
 This section provides practical examples of using Angular Translation Checker in different scenarios. Whether you're just getting started or implementing advanced workflows, these examples will help you get the most out of the tool.
 
-## ✈️ FlightFinder Demo Application
+## FlightFinder Demo Application
 
 **Try the complete live example application that demonstrates all features!**
 
 The FlightFinder is a comprehensive Angular application that showcases **all 21 configuration properties** of Angular Translation Checker with real-world usage patterns.
 
-### 🌟 What's Included
+### What's Included
 - **Modern Flight Search Interface**: Clean UI similar to Google Flights
 - **Multi-language Support**: English, Spanish, and French with real-time switching
 - **Complex Translation Patterns**: All detection capabilities demonstrated
 - **Enterprise Patterns**: SCREAMING_SNAKE_CASE and dynamic key generation
 - **All 21 Configuration Properties**: Complete demonstration with practical examples
 
-### 🚀 Quick Start with FlightFinder
+### Quick Start with FlightFinder
 
 ```bash
 # Clone the repository
@@ -33,7 +33,7 @@ npm start
 ./test-all-configs.sh
 ```
 
-### 📊 Configuration Examples Demonstrated
+### Configuration Examples Demonstrated
 
 The FlightFinder app demonstrates every configuration property:
 
@@ -56,7 +56,7 @@ The FlightFinder app demonstrates every configuration property:
 
 **And many more!** See the [complete configuration guide](/guide/configuration) for all 21 properties.
 
-### 🎯 Specific Test Scenarios
+### Specific Test Scenarios
 
 ```bash
 # Basic configuration demo
@@ -108,7 +108,7 @@ ng-i18n-check --output missing --exit-on-issues
 
 ## Common Scenarios
 
-### 🧹 **Translation Cleanup**
+### **Translation Cleanup**
 Remove unused translations to keep your files lean:
 
 ```bash
@@ -121,7 +121,7 @@ ng-i18n-check --output unused
 ng-i18n-check --output summary
 ```
 
-### 🔍 **Pre-commit Validation**
+### **Pre-commit Validation**
 Ensure translations are complete before committing:
 
 ```bash
@@ -129,7 +129,7 @@ Ensure translations are complete before committing:
 ng-i18n-check --output missing --exit-on-issues
 ```
 
-### 📊 **Generate Reports**
+### **Generate Reports**
 Create reports for stakeholders:
 
 ```bash

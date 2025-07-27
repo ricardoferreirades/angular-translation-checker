@@ -276,27 +276,27 @@ npm run translations:cleanup    # Generate cleanup CSV
 
 ```bash
 #!/bin/bash
-echo "🔍 Checking translations before release..."
+echo "Checking translations before release..."
 
 # 1. Ensure no missing translations
 if ng-i18n-check --output missing --exit-on-issues --quiet; then
-  echo "✅ No missing translations"
+  echo "No missing translations"
 else
-  echo "❌ Missing translations found - please fix before release"
+  echo "Missing translations found - please fix before release"
   exit 1
 fi
 
 # 2. Check coverage
 COVERAGE=$(ng-i18n-check --format json --quiet | jq '.summary.coverage')
 if (( $(echo "$COVERAGE >= 95" | bc -l) )); then
-  echo "✅ Translation coverage: ${COVERAGE}%"
+  echo "Translation coverage: ${COVERAGE}%"
 else
-  echo "⚠️ Translation coverage below 95%: ${COVERAGE}%"
+  echo "Translation coverage below 95%: ${COVERAGE}%"
 fi
 
 # 3. Generate release report
 ng-i18n-check --format json > release-translations.json
-echo "📊 Translation report generated"
+echo "Translation report generated"
 ```
 
 **When to use**: Release preparation, quality gates
@@ -427,10 +427,10 @@ ng-i18n-check --src-path ./src/app/features/user --output missing
 ```bash
 #!/bin/bash
 if ng-i18n-check --output missing --exit-on-issues --quiet; then
-  echo "✅ All translations complete"
+  echo "All translations complete"
   npm run build
 else
-  echo "❌ Missing translations - build cancelled"
+  echo "Missing translations - build cancelled"
   echo "Run 'npm run translations:missing' to see details"
   exit 1
 fi
@@ -442,7 +442,7 @@ fi
 #!/bin/bash
 # Try strict check first, fall back to lenient
 ng-i18n-check --output missing --exit-on-issues --quiet || {
-  echo "⚠️ Issues found, showing summary:"
+  echo "Issues found, showing summary:"
   ng-i18n-check --output summary
 }
 ```

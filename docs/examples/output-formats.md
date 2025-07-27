@@ -10,27 +10,27 @@ ng-i18n-check
 
 Output:
 ```
-🔍 Angular Translation Checker v1.3.5
+Angular Translation Checker v1.3.5
 
-📊 Translation Summary
+Translation Summary
 Total Keys: 156
 Used Keys: 142
 Unused Keys: 14
 Missing Keys: 3
 
-🔍 Dynamic Patterns Detected
+Dynamic Patterns Detected
 No dynamic patterns found
 
-🚫 Ignored Keys
+Ignored Keys
 debug.* (3 keys)
 test.* (5 keys)
 
-❌ Unused Keys
+Unused Keys
 - feature.old.button
 - feature.deprecated.message
 - common.unused.label
 
-⚠️  Missing Keys
+Missing Keys
 - user.profile.bio
 - settings.new.option
 - common.required.field
