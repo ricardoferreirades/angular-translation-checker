@@ -14,10 +14,15 @@
     "README.md"
   ],
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "dev": "ts-node src/index.ts",
     "test": "node test/test.js",
+    "test:ts": "ts-node test/test-typescript.ts",
     "test-example": "node test-example.js",
     "lint": "echo \"No linting configured\"",
-    "prepublishOnly": "npm test",
+    "prepublishOnly": "npm run build && npm test",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
@@ -68,6 +73,10 @@
   },
   "homepage": "https://github.com/ricardoferreirades/angular-translation-checker#readme",
   "devDependencies": {
+    "@types/glob": "^9.0.0",
+    "@types/node": "^24.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vitepress": "^1.6.3"
   },
   "peerDependencies": {
@@ -77,5 +86,8 @@
     "@angular/core": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "glob": "^11.0.3"
   }
 }
