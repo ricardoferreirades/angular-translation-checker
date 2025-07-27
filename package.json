@@ -1,8 +1,9 @@
 {
   "name": "angular-translation-checker",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A comprehensive tool for analyzing translation keys in Angular projects using ngx-translate",
   "main": "lib/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "ng-i18n-check": "bin/ng-i18n-check.js",
     "angular-translation-checker": "bin/ng-i18n-check.js"
@@ -10,6 +11,8 @@
   "files": [
     "bin",
     "lib",
+    "dist",
+    "src",
     "templates",
     "README.md"
   ],
