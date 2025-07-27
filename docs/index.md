@@ -14,28 +14,22 @@ hero:
       link: https://github.com/ricardoferreirades/angular-translation-checker
 
 features:
-  - icon: 🔍
-    title: Smart Analysis
+  - title: Smart Analysis
     details: Automatically detects used, unused, and missing translation keys across your Angular project with advanced pattern matching.
     
-  - icon: 🎯
-    title: Granular Output Control
+  - title: Granular Output Control
     details: Choose exactly what to display with the new --output option. Show only unused keys, missing translations, or custom combinations.
     
-  - icon: ⚙️
-    title: Highly Configurable
+  - title: Highly Configurable
     details: Flexible configuration options including ignore patterns, file exclusions, and custom dynamic pattern detection.
     
-  - icon: 🚀
-    title: CI/CD Ready
+  - title: CI/CD Ready
     details: Perfect for continuous integration with exit codes, JSON output, and automated translation validation.
     
-  - icon: 📊
-    title: Multiple Output Formats
+  - title: Multiple Output Formats
     details: Support for console, JSON, and CSV output formats to fit your workflow and reporting needs.
     
-  - icon: 🔧
-    title: Developer Friendly
+  - title: Developer Friendly
     details: Auto-detection of project structure, comprehensive CLI options, and detailed verbose logging for debugging.
 ---
 
