@@ -45,6 +45,27 @@ dist/
 build/
 *.tgz
 
+# Ignore generated reports and analysis output
+reports/
+*.report.html
+*.report.json
+*.report.txt
+analysis-*.html
+analysis-*.json
+translation-analysis-*.html
+translation-analysis-*.json
+translation-analysis-*.txt
+
+# Ignore TypeScript build artifacts
+*.d.ts.map
+*.js.map
+src/**/*.js
+src/**/*.d.ts
+
+# Ignore test configuration files
+test/test-config.json
+
 # Ignore development roadmap and internal planning documents
 FEATURE_ROADMAP.md
 DOCUMENTATION_AUDIT.md
+NEW-SCRIPTS.md
