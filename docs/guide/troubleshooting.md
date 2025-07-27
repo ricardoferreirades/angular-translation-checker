@@ -4,7 +4,7 @@ Having issues with Angular Translation Checker? This guide covers common problem
 
 ## Common Issues
 
-### ❌ **No Translation Files Found**
+### **No Translation Files Found**
 
 **Problem**: The tool reports that no translation files were found.
 
@@ -36,7 +36,7 @@ Error: No translation files found in ./src/assets/i18n
 
 ---
 
-### ❌ **Source Files Not Found**
+### **Source Files Not Found**
 
 **Problem**: The tool can't find your source code files.
 
@@ -72,7 +72,7 @@ Warning: No source files found matching patterns
 
 ---
 
-### ❌ **Configuration File Not Found**
+### **Configuration File Not Found**
 
 **Problem**: Custom configuration file can't be loaded.
 
@@ -99,7 +99,7 @@ Error: Configuration file not found: ./my-config.json
 
 ---
 
-### ❌ **False Positives in Unused Keys**
+### **False Positives in Unused Keys**
 
 **Problem**: Keys are reported as unused but they are actually used.
 
@@ -138,7 +138,7 @@ Error: Configuration file not found: ./my-config.json
 
 ---
 
-### ❌ **Memory Issues with Large Projects**
+### **Memory Issues with Large Projects**
 
 **Problem**: Tool runs out of memory on large codebases.
 
@@ -172,7 +172,7 @@ Error: Configuration file not found: ./my-config.json
 
 ---
 
-### ❌ **CI/CD Pipeline Failures**
+### **CI/CD Pipeline Failures**
 
 **Problem**: Tool fails in continuous integration environments.
 
@@ -211,7 +211,7 @@ Error: Configuration file not found: ./my-config.json
 
 ## Performance Issues
 
-### 🐌 **Slow Analysis**
+### **Slow Analysis**
 
 **Problem**: Tool takes too long to analyze your project.
 
@@ -245,7 +245,7 @@ Error: Configuration file not found: ./my-config.json
 
 ## Configuration Issues
 
-### ⚙️ **JSON Configuration Errors**
+### **JSON Configuration Errors**
 
 **Problem**: Configuration file has syntax errors.
 
@@ -264,7 +264,7 @@ Error: Configuration file not found: ./my-config.json
 3. Common JSON mistakes:
    ```json
    {
-     "languages": ["en", "es"], // ❌ Trailing comma
+     "languages": ["en", "es"], // Error: Trailing comma
      "project": "my-app"
    }
    ```
@@ -272,13 +272,13 @@ Error: Configuration file not found: ./my-config.json
    ```json
    {
      "languages": ["en", "es"],
-     "project": "my-app"        // ✅ No trailing comma
+     "project": "my-app"        // Correct: No trailing comma
    }
    ```
 
 ---
 
-### ⚙️ **Pattern Matching Issues**
+### **Pattern Matching Issues**
 
 **Problem**: File patterns don't match expected files.
 
@@ -312,7 +312,7 @@ Error: Configuration file not found: ./my-config.json
 
 ## Output Issues
 
-### 📄 **Formatting Problems**
+### **Formatting Problems**
 
 **Problem**: Output format is not as expected.
 
@@ -339,7 +339,7 @@ Error: Configuration file not found: ./my-config.json
 
 ## Getting Help
 
-### 📞 **When to Seek Support**
+### **When to Seek Support**
 
 If you've tried the solutions above and still have issues:
 
@@ -358,7 +358,7 @@ If you've tried the solutions above and still have issues:
    - Command used
    - Expected vs actual behavior
 
-### 🔧 **Debug Information**
+### **Debug Information**
 
 When reporting issues, include this information:
 
@@ -378,7 +378,7 @@ cat your-config.json
 head -20 src/assets/i18n/en.json
 ```
 
-### 💡 **Community Resources**
+### **Community Resources**
 
 - [GitHub Discussions](https://github.com/ricardoferreira/angular-translation-checker/discussions)
 - [Stack Overflow Tag](https://stackoverflow.com/questions/tagged/angular-translation-checker)
