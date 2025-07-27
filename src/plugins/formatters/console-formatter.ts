@@ -22,9 +22,13 @@ export class ConsoleFormatter implements FormatterPlugin {
   async format(result: AnalysisResult, sections: OutputSection[]): Promise<string> {
     const output: string[] = [];
     
-    // Header
-    output.push('Angular Translation Checker Analysis Results');
-    output.push('='.repeat(50));
+    // Professional Header with timestamp
+    const timestamp = new Date().toISOString().replace('T', ' ').split('.')[0];
+    const languages = result.summary.languages.join(', ');
+    output.push('┌─ Angular Translation Checker Analysis ─────────────────────────┐');
+    output.push(`│ Analysis completed at: ${timestamp}                │`);
+    output.push(`│ Languages analyzed: ${languages.padEnd(42)} │`);
+    output.push('└─────────────────────────────────────────────────────────────────┘');
     output.push('');
 
     // Process each requested section

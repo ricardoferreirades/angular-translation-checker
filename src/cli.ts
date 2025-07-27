@@ -90,25 +90,26 @@ function parseArgs(): CLIOptions {
 }
 
 function showHelp(): void {
+  const packageJson = require('../package.json');
   console.log(`
-Angular Translation Checker v2.0.0 (TypeScript Edition)
+Angular Translation Checker v${packageJson.version} (TypeScript Edition)
 
 USAGE:
   ng-i18n-check [options]
 
 OPTIONS:
-  -l, --locales-path <path>    Path to translation files directory
-  -s, --src-path <path>        Path to source code directory  
-  -f, --format <format>        Output format (console|json|csv)
-  -o, --output <sections>      Output sections (comma-separated)
-  -c, --config <path>          Configuration file path
-  --ignore-keys <patterns>     Ignore key patterns (comma-separated)
-  --languages <langs>          Specific languages to check (comma-separated)
-  --exit-on-issues            Exit with error code if issues found
-  -v, --verbose               Enable verbose logging
-  --generate-config           Generate default configuration file
-  --help, -h                  Show this help message
-  --version                   Show version information
+  -l, --locales-path <path>    Path to translation files directory (default: ./src/assets/i18n)
+  -s, --src-path <path>        Path to source code directory (default: ./src)
+  -f, --format <format>        Output format: console, json, csv (default: console)
+  -o, --output <sections>      Output sections (comma-separated, see below)
+  -c, --config <path>          Configuration file path (default: ./.ng-i18n-check.json)
+  --ignore-keys <patterns>     Ignore key patterns (comma-separated regex patterns)
+  --languages <langs>          Specific languages to check (comma-separated, e.g., en,es,fr)
+  --exit-on-issues            Exit with error code if translation issues are found
+  -v, --verbose               Enable verbose logging and detailed output
+  --generate-config           Generate a default configuration file
+  --help, -h                  Show this comprehensive help message
+  --version                   Show version information and credits
 
 OUTPUT SECTIONS:
   summary          Analysis summary with counts and coverage
@@ -121,11 +122,35 @@ OUTPUT SECTIONS:
   config           Current configuration settings
 
 EXAMPLES:
-  ng-i18n-check                                    # Basic analysis
-  ng-i18n-check --output summary,unused,missing   # Specific sections
-  ng-i18n-check --format json --verbose           # JSON output with verbose logging
-  ng-i18n-check --config ./my-config.json         # Use custom configuration
-  ng-i18n-check --generate-config                 # Generate configuration file
+  # Basic analysis with default settings
+  ng-i18n-check
+
+  # Analyze specific paths with verbose output
+  ng-i18n-check -l ./assets/i18n -s ./src -v
+
+  # Show only critical information (unused and missing keys)
+  ng-i18n-check --output summary,unused,missing
+
+  # Generate JSON report and save to file
+  ng-i18n-check --format json --output summary,unused > translation-report.json
+
+  # Check only specific languages with custom config
+  ng-i18n-check --languages en,es --config ./my-i18n-config.json
+
+  # CI/CD: Exit with error if issues found
+  ng-i18n-check --exit-on-issues --output summary
+
+  # Generate configuration file for your project
+  ng-i18n-check --generate-config
+
+  # Ignore specific key patterns (useful for dynamic keys)
+  ng-i18n-check --ignore-keys "DYNAMIC_.*,TEST_.*"
+
+COMMON WORKFLOWS:
+  1. First time setup:     ng-i18n-check --generate-config
+  2. Regular analysis:     ng-i18n-check
+  3. Detailed inspection:  ng-i18n-check -v --output summary,unused,missing
+  4. CI/CD integration:    ng-i18n-check --exit-on-issues --format json
 
 For more information and examples, visit:
 https://ricardoferreirades.github.io/angular-translation-checker/
@@ -134,8 +159,22 @@ https://ricardoferreirades.github.io/angular-translation-checker/
 
 function showVersion(): void {
   const packageJson = require('../package.json');
-  console.log(`Angular Translation Checker v${packageJson.version} (TypeScript Edition)`);
-  console.log('A modern, plugin-based translation analysis tool for Angular projects.');
+  console.log(`
+┌─ Angular Translation Checker ─────────────────────────────────┐
+│ Version: ${packageJson.version} (TypeScript Edition)                     │
+│ A modern, plugin-based translation analysis tool             │
+│                                                               │
+│ Features:                                                     │
+│ • TypeScript-first architecture with full type safety        │
+│ • Extensible plugin system for custom analysis               │
+│ • Multiple output formats (Console, JSON, CSV, HTML)         │
+│ • Advanced pattern matching and dynamic key detection        │
+│ • CI/CD integration with configurable exit codes             │
+│                                                               │
+│ Repository: https://github.com/ricardoferreirades/angular-translation-checker │
+│ Documentation: https://ricardoferreirades.github.io/angular-translation-checker/ │
+└───────────────────────────────────────────────────────────────┘
+`);
 }
 
 async function main(): Promise<void> {
@@ -198,7 +237,36 @@ async function main(): Promise<void> {
     }
     
   } catch (error) {
-    console.error('Error:', error);
+    console.error('\n❌ Analysis Error:');
+    
+    if (error instanceof Error) {
+      console.error(`   ${error.message}`);
+      
+      // Provide helpful suggestions based on common error types
+      if (error.message.includes('ENOENT') || error.message.includes('not found')) {
+        console.error('\n💡 Suggestions:');
+        console.error('   • Check that the specified paths exist');
+        console.error('   • Use --locales-path and --src-path to specify correct directories');
+        console.error('   • Run --generate-config to create a default configuration');
+      } else if (error.message.includes('permission')) {
+        console.error('\n💡 Suggestions:');
+        console.error('   • Check file permissions for the specified directories');
+        console.error('   • Ensure you have read access to translation files');
+      } else if (error.message.includes('JSON') || error.message.includes('parse')) {
+        console.error('\n💡 Suggestions:');
+        console.error('   • Check that translation files contain valid JSON');
+        console.error('   • Use --verbose for detailed parsing information');
+      }
+      
+      if (options.verbose && error.stack) {
+        console.error('\n🔍 Stack trace (verbose mode):');
+        console.error(error.stack);
+      }
+    } else {
+      console.error(`   ${String(error)}`);
+    }
+    
+    console.error('\n📖 For help and examples, run: ng-i18n-check --help');
     process.exit(1);
   }
 }
@@ -206,7 +274,12 @@ async function main(): Promise<void> {
 // Run the CLI
 if (require.main === module) {
   main().catch(error => {
-    console.error('Unexpected error:', error);
+    console.error('\n💥 Unexpected Error:');
+    console.error(`   ${error.message || String(error)}`);
+    console.error('\n📝 This appears to be an unexpected error. Please consider:');
+    console.error('   • Reporting this issue at: https://github.com/ricardoferreirades/angular-translation-checker/issues');
+    console.error('   • Including your configuration and command used');
+    console.error('   • Running with --verbose for more details');
     process.exit(1);
   });
 }
