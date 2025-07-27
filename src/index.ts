@@ -18,6 +18,7 @@ import { TypeScriptExtractor } from './plugins/extractors/typescript-extractor';
 import { HtmlExtractor } from './plugins/extractors/html-extractor';
 import { CoreAnalyzer } from './plugins/analyzers/core-analyzer';
 import { ConsoleFormatter } from './plugins/formatters/console-formatter';
+import { AnalysisConfig } from './types';
 
 /**
  * Create a new translation checker instance with built-in plugins
@@ -52,12 +53,12 @@ export async function registerBuiltInPlugins(
 /**
  * Convenience function for quick analysis
  */
-export async function analyzeTranslations(configPath?: string) {
+export async function analyzeTranslations(configPath?: string, configOverrides?: Partial<AnalysisConfig>) {
   const checker = await createTranslationChecker();
   
   try {
-    // Initialize with configuration
-    const config = await checker.initialize(configPath);
+    // Initialize with configuration and overrides
+    const config = await checker.initialize(configPath, configOverrides);
     
     // Register built-in plugins
     await registerBuiltInPlugins(checker, config);

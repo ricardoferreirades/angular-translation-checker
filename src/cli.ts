@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { analyzeTranslations } from '../src/index';
-import { AnalysisConfig, OutputFormat, OutputSection } from '../src/types';
+import { analyzeTranslations } from './index';
+import { AnalysisConfig, OutputFormat, OutputSection } from './types';
 
 interface CLIOptions {
   localesPath?: string;
@@ -152,8 +152,8 @@ async function main(): Promise<void> {
   }
   
   if (options.generateConfig) {
-    const { ConfigurationManager } = await import('../src/core/config-manager');
-    const { ConsoleLogger } = await import('../src/core/logger');
+    const { ConfigurationManager } = await import('./core/config-manager');
+    const { ConsoleLogger } = await import('./core/logger');
     
     const configManager = new ConfigurationManager(new ConsoleLogger(true));
     await configManager.generateConfigFile();
@@ -187,7 +187,7 @@ async function main(): Promise<void> {
     }
     
     // Run analysis
-    const result = await analyzeTranslations(options.config);
+    const result = await analyzeTranslations(options.config, configOverrides);
     
     // Print output
     console.log(result.output);

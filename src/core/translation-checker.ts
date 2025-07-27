@@ -35,12 +35,17 @@ export class TranslationChecker {
   /**
    * Initialize the translation checker with configuration
    */
-  async initialize(configPath?: string): Promise<AnalysisConfig> {
+  async initialize(configPath?: string, configOverrides?: Partial<AnalysisConfig>): Promise<AnalysisConfig> {
     try {
       this.eventBus.emit('checker:initializing', { configPath });
       
       // Load configuration
       const config = await this.configManager.loadConfig(configPath);
+      
+      // Apply overrides if provided
+      if (configOverrides) {
+        Object.assign(config, configOverrides);
+      }
       
       // Set logger verbosity
       if (this.logger instanceof ConsoleLogger) {
