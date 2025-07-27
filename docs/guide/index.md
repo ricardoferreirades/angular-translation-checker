@@ -1,15 +1,27 @@
-# Guide
+# Guide - TypeScript Edition
 
-Welcome to the Angular Translation Checker documentation! This comprehensive tool helps you maintain translation quality in Angular applications using ngx-translate.
+Welcome to the Angular Translation Checker v1.5.0 documentation! This modern, TypeScript-first tool helps you maintain translation quality in Angular applications with professional features and extensible architecture.
 
-## Try the FlightFinder Demo First!
+## 🎉 What's New in v1.5.0
+
+**Complete TypeScript Rewrite** with enhanced features:
+
+- **🛡️ Full Type Safety** - Complete TypeScript implementation with strict mode
+- **🔌 Plugin Architecture** - Extensible design with 5+ plugin types
+- **🎨 Professional UX** - Beautiful CLI with intelligent error handling
+- **📊 Rich Reporting** - Multiple formats with enhanced metadata
+- **⚙️ Smart Configuration** - Intelligent config generation
+- **🔄 Zero Breaking Changes** - Seamless upgrade from v1.4.x
+
+## 🚀 Try the FlightFinder Demo First!
 
 **See Angular Translation Checker in action with a complete Angular application!**
 
 The [FlightFinder Demo](/examples/flightfinder) is a comprehensive Angular app that demonstrates **all features** with real-world usage patterns:
 
 - **Modern Flight Search Interface** with multi-language support
-- **All 21 configuration properties** demonstrated
+- **TypeScript-first integration** with full type safety
+- **All configuration properties** demonstrated
 - **Complex translation patterns** including dynamic keys
 - **Enterprise naming conventions** (SCREAMING_SNAKE_CASE)
 - **Live example** you can run and explore
@@ -19,6 +31,9 @@ The [FlightFinder Demo](/examples/flightfinder) is a comprehensive Angular app t
 git clone https://github.com/ricardoferreirades/angular-translation-checker.git
 cd angular-translation-checker/example
 npm install && npm start
+
+# Test the new TypeScript CLI
+npm run check-translations
 ```
 
 [Explore FlightFinder Demo →](/examples/flightfinder)
@@ -27,27 +42,58 @@ npm install && npm start
 
 ## What is Angular Translation Checker?
 
-Angular Translation Checker is a powerful command-line tool and Node.js library that analyzes your Angular project to provide insights about:
+Angular Translation Checker is a modern, TypeScript-first command-line tool and Node.js library that analyzes your Angular project to provide professional insights about:
 
-- **Find unused translations** - Clean up your translation files
-- **Detect missing translations** - Ensure complete localization
-- **Generate comprehensive reports** - Monitor translation health
-- **Integrate with CI/CD** - Automate translation validation
-- **Support multiple output formats** - Console, JSON, and CSV
+- **🔍 Find unused translations** - Clean up your translation files with smart detection
+- **🎯 Detect missing translations** - Ensure complete localization coverage
+- **📊 Generate comprehensive reports** - Professional reports in multiple formats
+- **🔄 Integrate with CI/CD** - Enhanced automation with better error handling
+- **🔌 Extend functionality** - Build custom plugins for specialized analysis
 
-## Quick Overview
+## ✨ Key Features
 
-### Key Features
+### TypeScript-First Architecture (v1.5.0)
+- **Full Type Safety**: Complete TypeScript implementation with IntelliSense support
+- **Modern Patterns**: Async/await, event-driven design, and clean architecture
+- **Zero Dependencies**: Lightweight, self-contained solution
 
-- **Smart Pattern Detection**: Automatically finds translation keys in TypeScript, HTML, and JavaScript files
-- **Granular Output Control**: Choose exactly what information you want to see
-- **Dynamic Key Support**: Handles dynamic translation key patterns
-- **Flexible Configuration**: Customize behavior for your project needs
-- **CI/CD Ready**: Perfect for automated build pipelines
+### Enhanced User Experience
+- **Professional CLI**: Beautiful help system with real-world examples
+- **Intelligent Errors**: Contextual error messages with actionable suggestions
+- **Rich Output**: Professional console formatting with timestamps
 
-### Use Cases
+### Advanced Analysis
+- **Smart Pattern Detection**: Enhanced regex patterns for complex translation usage
+- **Plugin System**: Extensible architecture with custom extractors and formatters
+- **Granular Control**: Choose exactly what information you want to see
 
-- **Development Workflow**: Validate translations during development
+## 📚 Documentation Sections
+
+### 🚀 Getting Started
+- **[Quick Start](/guide/quick-start)** - Install and run your first analysis
+- **[Installation](/guide/installation)** - Complete installation guide
+- **[Migration from v1.4](/guide/migration-v1.5)** - Seamless upgrade guide
+
+### ⚙️ Configuration & Usage
+- **[Configuration](/guide/configuration)** - Complete configuration reference
+- **[Output Formats](/guide/output-formats)** - Console, JSON, CSV, and HTML outputs
+- **[Output Sections](/guide/output-sections)** - Granular output control
+
+### 🔧 Advanced Features
+- **[Plugin Development](/guide/plugin-development)** - Build custom plugins
+- **[Dynamic Patterns](/guide/dynamic-patterns)** - Handle complex translation patterns
+- **[Ignore Patterns](/guide/ignore-patterns)** - Configure what to exclude
+
+### 🔄 Integration
+- **[CI/CD Integration](/guide/ci-cd)** - Automate translation validation
+- **[Troubleshooting](/guide/troubleshooting)** - Common issues and solutions
+
+## Use Cases
+
+### Development Workflow
+- **TypeScript Integration**: Full type safety during development
+- **Real-time Validation**: Immediate feedback on translation issues
+- **Professional Output**: Beautiful console reports with actionable insights
 - **Code Reviews**: Ensure translation completeness before merging
 - **Continuous Integration**: Fail builds if translations are incomplete
 - **Project Maintenance**: Regular cleanup of unused translations

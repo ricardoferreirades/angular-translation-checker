@@ -3,34 +3,37 @@ layout: home
 
 hero:
   name: "Angular Translation Checker"
-  text: "Analyze translation keys with precision"
-  tagline: "A comprehensive tool for analyzing translation keys in Angular projects using ngx-translate with granular output control"
+  text: "TypeScript-First Translation Analysis"
+  tagline: "A modern, plugin-based translation analysis tool with TypeScript architecture, professional reporting, and extensible design for Angular projects"
   actions:
     - theme: brand
       text: Get Started
       link: /guide/
     - theme: alt
+      text: What's New in v1.5.0
+      link: /guide/migration-v1.5
+    - theme: alt
       text: View on GitHub
       link: https://github.com/ricardoferreirades/angular-translation-checker
 
 features:
-  - title: Smart Analysis
-    details: Automatically detects used, unused, and missing translation keys across your Angular project with advanced pattern matching.
+  - title: 🛡️ TypeScript-First Architecture (v1.5.0)
+    details: Complete TypeScript implementation with strict mode, full type safety, and professional development experience with IntelliSense support.
     
-  - title: Granular Output Control
-    details: Choose exactly what to display with the new --output option. Show only unused keys, missing translations, or custom combinations.
+  - title: 🔌 Extensible Plugin System
+    details: Build custom extractors, analyzers, formatters, and reporters with the new plugin architecture. 5+ plugin types available.
     
-  - title: Highly Configurable
-    details: Flexible configuration options including ignore patterns, file exclusions, and custom dynamic pattern detection.
+  - title: 🎨 Professional User Experience
+    details: Beautiful CLI with intelligent error handling, contextual suggestions, and professional Unicode formatting with timestamps.
     
-  - title: CI/CD Ready
-    details: Perfect for continuous integration with exit codes, JSON output, and automated translation validation.
+  - title: 📊 Advanced Reporting & Output
+    details: Multiple formats (Console, JSON, CSV, HTML) with granular section control, metadata, and interactive reports.
     
-  - title: Multiple Output Formats
-    details: Support for console, JSON, and CSV output formats to fit your workflow and reporting needs.
+  - title: 🚀 Modern Development Stack
+    details: Event-driven architecture, async/await patterns, comprehensive testing, and zero dependencies with TypeScript definitions.
     
-  - title: Developer Friendly
-    details: Auto-detection of project structure, comprehensive CLI options, and detailed verbose logging for debugging.
+  - title: 🔄 CI/CD Integration
+    details: Enhanced exit codes, JSON reports, automated validation, and professional error handling for continuous integration pipelines.
 ---
 
 ## Quick Example
@@ -39,15 +42,32 @@ features:
 # Install globally
 npm install -g angular-translation-checker
 
-# Basic analysis
+# Basic analysis with new TypeScript CLI
 ng-i18n-check
 
-# Show only unused translations
-ng-i18n-check --output unused
+# Generate configuration file (new in v1.5.0)
+ng-i18n-check --generate-config
 
-# Generate JSON report for CI/CD
-ng-i18n-check --format json --exit-on-issues
+# Professional verbose output with timestamps
+ng-i18n-check -v --output summary,unused,missing
+
+# Generate JSON report for CI/CD with metadata
+ng-i18n-check --format json --exit-on-issues > translation-report.json
+
+# Check specific languages only
+ng-i18n-check --languages en,es,fr
 ```
+
+## ✨ What's New in v1.5.0
+
+- **🎉 Complete TypeScript Rewrite** - Full type safety and modern architecture
+- **🔌 Plugin System** - Extensible design with 5+ plugin types
+- **🎨 Enhanced UX** - Professional CLI with beautiful formatting
+- **📊 Rich Reporting** - HTML reports, enhanced JSON, and professional console output
+- **⚙️ Smart Config** - Intelligent configuration generation
+- **🔄 Zero Breaking Changes** - Seamless upgrade from v1.4.x
+
+[Learn more about the TypeScript migration →](/guide/migration-v1.5)
 
 ## What's New in v1.3.5+
 
