@@ -1,6 +1,9 @@
 # Quick Start
 
-Get up and running with Angular Translation Checker in minutes. This guide walks you through your first analysis and shows you the most common usage patterns.
+Get up and running with Angular Translation Checker in mi```
+Analyzing translations...
+
+Missing translation keys:s. This guide walks you through your first analysis and shows you the most common usage patterns.
 
 ## Your First Analysis
 
@@ -13,21 +16,24 @@ ng-i18n-check
 You'll see output similar to this:
 
 ```
-🔍 Analyzing translations...
+Analyzing translations...
 
-📊 Translation Analysis Results:
+Translation Analysis Results:
    Total translation keys: 125
    Used keys (static): 89
    Used keys (dynamic patterns): 23
    Unused keys: 13
    Missing keys: 5
 
-🚨 Unused translation keys:
-   - BUTTONS.DEPRECATED_SAVE
-   - ERRORS.OLD_VALIDATION
-   - ...
+- Translations found: 45
+- Keys used in code: 32
+- Coverage: 71%
 
-⚠️  Missing translation keys:
+Unused translation keys:
+- login.forgot_password
+- home.welcome_back
+
+Missing translation keys:
    - COMMON.NEW_FEATURE.TITLE
    - DASHBOARD.RECENT_ACTIVITY
    - ...
@@ -37,11 +43,11 @@ You'll see output similar to this:
 
 The default output shows several sections:
 
-- **📊 Summary**: Overview of your translation health
-- **🎯 Dynamic Patterns**: Keys matched by patterns like `COMMON.LOADING.*`
-- **🚫 Ignored Keys**: Keys excluded by your configuration
-- **🚨 Unused Keys**: Translations that can potentially be removed
-- **⚠️ Missing Keys**: Referenced keys that need translation files
+- **Summary**: Overview of your translation health
+- **Dynamic Patterns**: Keys matched by patterns like `COMMON.LOADING.*`
+- **Ignored Keys**: Keys excluded by your configuration
+- **Unused Keys**: Translations that can potentially be removed
+- **Missing Keys**: Referenced keys that need translation files
 
 ## Focus on What Matters
 
@@ -53,9 +59,9 @@ ng-i18n-check --output unused
 ```
 
 ```
-🔍 Analyzing translations...
+Analyzing translations...
 
-🚨 Unused translation keys:
+Unused translation keys:
    - BUTTONS.DEPRECATED_SAVE
    - ERRORS.OLD_VALIDATION
    - LEGACY.FEATURE.TITLE
@@ -68,12 +74,11 @@ ng-i18n-check --output missing
 ```
 
 ```
-🔍 Analyzing translations...
+Analyzing translations...
 
-⚠️  Missing translation keys:
-   - COMMON.NEW_FEATURE.TITLE
-   - DASHBOARD.RECENT_ACTIVITY
-   - PROFILE.SETTINGS.PRIVACY
+Missing translation keys:
+- profile.settings
+- navigation.logout
 ```
 
 ### Show Summary + Specific Sections
@@ -83,7 +88,7 @@ ng-i18n-check --output summary,unused,missing
 
 ## Common Workflows
 
-### 🧹 **Cleanup Workflow**
+### **Cleanup Workflow**
 Remove unused translations to keep your files lean:
 
 ```bash
@@ -107,7 +112,7 @@ ng-i18n-check --output summary
 ng-i18n-check --output missing
 ```
 
-### 🔍 **Code Review Workflow**
+### **Code Review Workflow**
 Generate reports for pull requests:
 
 ```bash
@@ -118,7 +123,7 @@ ng-i18n-check --verbose
 ng-i18n-check --format json > translation-report.json
 ```
 
-### 🚀 **CI/CD Workflow**
+### **CI/CD Workflow**
 Fail builds when translations are incomplete:
 
 ```bash

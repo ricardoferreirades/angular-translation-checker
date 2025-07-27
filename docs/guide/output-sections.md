@@ -12,7 +12,7 @@ ng-i18n-check --output summary
 ```
 
 ```
-📊 Translation Analysis Results:
+Translation Analysis Results:
    Total translation keys: 107
    Used keys (static): 31
    Used keys (dynamic patterns): 28
@@ -29,7 +29,7 @@ ng-i18n-check --output unused
 ```
 
 ```
-🚨 Unused translation keys:
+Unused translation keys:
    - AIRLINES.AMERICAN
    - AIRLINES.DELTA
    - BUTTONS.CANCEL
@@ -45,7 +45,7 @@ ng-i18n-check --output missing
 ```
 
 ```
-⚠️  Missing translation keys:
+Missing translation keys:
    - COMMON.ERROR.MESSAGE
    - DASHBOARD.NEW_WIDGET.TITLE
    - PROFILE.SETTINGS.PRIVACY
@@ -59,10 +59,10 @@ ng-i18n-check --output ignored
 ```
 
 ```
-🚫 Ignored translation keys:
+Ignored translation keys:
    📍 Exact matches:
       "favicon.ico": 1 key(s)
-   🎯 Pattern matches:
+   Pattern matches:
       "DEBUG.*": 3 key(s)
       "TEMP.*": 2 key(s)
 ```
@@ -75,7 +75,7 @@ ng-i18n-check --output dynamicPatterns
 ```
 
 ```
-🎯 Keys matched by dynamic patterns:
+Keys matched by dynamic patterns:
    "FLIGHT.RESULTS.*": 14 key(s)
    "COMMON.LOADING.*": 6 key(s)
    "NOTIFICATIONS.*.TITLE": 3 key(s)
@@ -146,7 +146,9 @@ This way, you only need to specify `--output` when you want different sections t
 
 ## Use Cases
 
-### 🧹 **Translation Cleanup**
+## Real-World Scenarios
+
+### **Translation Cleanup**
 Perfect for identifying and removing unused translations:
 
 ```bash
@@ -159,14 +161,14 @@ Review the list, remove unused keys from your translation files, then verify:
 ng-i18n-check --output summary
 ```
 
-### 🔍 **Missing Translation Detection**
+### **Missing Translation Detection**
 Ideal for development and QA workflows:
 
 ```bash
 ng-i18n-check --output missing
 ```
 
-### 🚀 **CI/CD Pipeline Integration**
+### **CI/CD Pipeline Integration**
 Use specific sections for different pipeline stages:
 
 ```bash
@@ -185,7 +187,7 @@ When you need to understand what's happening:
 ng-i18n-check --output summary,dynamicPatterns,ignored --verbose
 ```
 
-### 📊 **Reporting and Analytics**
+### **Reporting and Analytics**
 Generate specific reports for stakeholders:
 
 ```bash

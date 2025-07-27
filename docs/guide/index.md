@@ -2,7 +2,7 @@
 
 Welcome to the Angular Translation Checker documentation! This comprehensive tool helps you maintain translation quality in Angular applications using ngx-translate.
 
-## ✈️ Try the FlightFinder Demo First!
+## Try the FlightFinder Demo First!
 
 **See Angular Translation Checker in action with a complete Angular application!**
 
@@ -21,7 +21,7 @@ cd angular-translation-checker/example
 npm install && npm start
 ```
 
-[🚀 Explore FlightFinder Demo →](/examples/flightfinder)
+[Explore FlightFinder Demo →](/examples/flightfinder)
 
 ---
 
@@ -29,11 +29,11 @@ npm install && npm start
 
 Angular Translation Checker is a powerful command-line tool and Node.js library that analyzes your Angular project to provide insights about:
 
-- 🔍 **Find unused translations** - Clean up your translation files
-- 🎯 **Detect missing translations** - Ensure complete localization
-- 📊 **Generate comprehensive reports** - Monitor translation health
-- ⚡ **Integrate with CI/CD** - Automate translation validation
-- 🎨 **Support multiple output formats** - Console, JSON, and CSV
+- **Find unused translations** - Clean up your translation files
+- **Detect missing translations** - Ensure complete localization
+- **Generate comprehensive reports** - Monitor translation health
+- **Integrate with CI/CD** - Automate translation validation
+- **Support multiple output formats** - Console, JSON, and CSV
 
 ## Quick Overview
 
@@ -76,18 +76,20 @@ ng-i18n-check --format json > report.json
 
 This documentation is organized into several sections:
 
-### 📚 **Guide Sections**
+## Next Steps
+
+### **Guide Sections**
 - [**Installation**](/guide/installation) - Set up the tool in your project
 - [**Quick Start**](/guide/quick-start) - Get running in minutes
 - [**Configuration**](/guide/configuration) - Customize for your needs
 - [**Output Sections**](/guide/output-sections) - Control what you see
 - [**Troubleshooting**](/guide/troubleshooting) - Solve common issues
 
-### 💡 **Examples**
+### **Examples**
 - [**Overview**](/examples/) - Practical usage examples
 - Real-world scenarios and solutions
 
-### 🔧 **API Reference**
+### **API Reference**
 - [**API Documentation**](/api/) - Complete API reference
 - Function signatures and options
 
@@ -146,13 +148,13 @@ ng-i18n-check --output summary --format csv > translation-report.csv
 
 ## What's New in v1.3.x
 
-### 🎯 Granular Output Control
+### Granular Output Control
 The new `--output` option lets you choose exactly what information to display:
 ```bash
 ng-i18n-check --output summary,missing,unused
 ```
 
-### 🔧 Enhanced Configuration
+### Enhanced Configuration
 More flexible configuration options:
 ```json
 {
@@ -162,7 +164,7 @@ More flexible configuration options:
 }
 ```
 
-### 📊 Multiple Output Formats
+### Multiple Output Formats
 Choose from console, JSON, or CSV output:
 ```bash
 ng-i18n-check --format json
@@ -183,13 +185,13 @@ ng-i18n-check --output summary,missing
 ng-i18n-check --output summary,unused,missing,dynamicPatterns
 ```
 
-### ⚙️ **Flexible Configuration**
+### **Flexible Configuration**
 - JSON-based configuration files
 - Ignore patterns for keys, files, and directories
 - Custom file extensions and paths
 - Regex and wildcard pattern support
 
-### 🚀 **CI/CD Integration**
+### **CI/CD Integration**
 - Exit codes for automated validation
 - JSON and CSV output formats
 - Configurable error handling
