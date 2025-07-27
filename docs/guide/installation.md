@@ -91,9 +91,9 @@ Angular Translation Checker automatically detects common Angular project structu
 ```
 src/
 ├── assets/
-│   └── i18n/          # ✅ Default location
+│   └── i18n/          # Default location
 ├── assets/
-│   └── locales/       # ✅ Alternative location  
+│   └── locales/       # Alternative location  
 └── app/
     └── ...            # Source files to analyze
 ```

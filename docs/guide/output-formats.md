@@ -146,11 +146,11 @@ const report = JSON.parse(output);
 
 // Process results
 if (report.summary.missingKeys > 0) {
-  console.log(`❌ Found ${report.summary.missingKeys} missing keys`);
+  console.log(`Found ${report.summary.missingKeys} missing keys`);
   process.exit(1);
 }
 
-console.log(`✅ Translation coverage: ${report.summary.coverage}%`);
+console.log(`Translation coverage: ${report.summary.coverage}%`);
 ```
 
 #### Python Processing

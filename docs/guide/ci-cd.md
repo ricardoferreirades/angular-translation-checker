@@ -295,7 +295,7 @@ MISSING_COUNT=$(echo $RESULT | jq '.summary.missingKeys')
 
 if [ $MISSING_COUNT -gt 0 ]; then
   curl -X POST -H 'Content-type: application/json' \
-    --data "{\"text\":\"⚠️ Translation Check: $MISSING_COUNT missing keys found\"}" \
+    --data "{\"text\":\"Translation Check: $MISSING_COUNT missing keys found\"}" \
     $SLACK_WEBHOOK_URL
 fi
 ```

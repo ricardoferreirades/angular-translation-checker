@@ -181,9 +181,9 @@ ng-i18n-check --output missing --exit-on-issues
 # Check exit code in scripts
 ng-i18n-check --exit-on-issues
 if [ $? -eq 0 ]; then
-  echo "✅ All translations valid"
+  echo "All translations valid"
 else
-  echo "❌ Translation issues found"
+  echo "Translation issues found"
   exit 1
 fi
 
