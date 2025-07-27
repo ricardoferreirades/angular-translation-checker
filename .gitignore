@@ -65,10 +65,23 @@ src/**/*.d.ts
 # Ignore test configuration files
 test/test-config.json
 
-# Ignore development roadmap and internal planning documents
+# Ignore development scripts and process files
+*.sh
+test-example.js
+COMPLETE_DOCS_UPDATE_SUMMARY.md
+DOCUMENTATION_UPDATE_SUMMARY.md
+PERFECT_STATUS_REPORT.md
+PUBLISHING-GUIDE.md
+PUBLISHING.md
+release-notes.md
+GIT_COMMIT_SUMMARY.md
 FEATURE_ROADMAP.md
 DOCUMENTATION_AUDIT.md
 NEW-SCRIPTS.md
+commit-changes.sh
+create-release.sh
+github-setup.sh
+publish.sh
 
 # Ignore user-generated configuration files
 angular-translation-checker.config.json
