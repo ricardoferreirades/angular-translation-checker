@@ -27,8 +27,11 @@ export class PluginManager {
 
   async registerPlugin(plugin: Plugin, config: AnalysisConfig): Promise<void> {
     try {
+      if (!plugin || typeof plugin !== 'object' || typeof plugin.name !== 'string' || !plugin.name.trim()) {
+        throw new PluginError('Plugin must have a valid name property', plugin?.name ?? 'unknown');
+      }
       this.logger.debug(`Registering plugin: ${plugin.name} v${plugin.version}`);
-      
+
       // Check for name conflicts
       if (this.plugins.has(plugin.name)) {
         throw new PluginError(
@@ -49,23 +52,23 @@ export class PluginManager {
 
       // Register plugin by type
       this.plugins.set(plugin.name, plugin);
-      
+
       if (this.isAnalyzerPlugin(plugin)) {
         this.analyzers.set(plugin.name, plugin);
       }
-      
+
       if (this.isExtractorPlugin(plugin)) {
         this.extractors.set(plugin.name, plugin);
       }
-      
+
       if (this.isFormatterPlugin(plugin)) {
         this.formatters.set(plugin.outputFormat, plugin);
       }
-      
+
       if (this.isValidatorPlugin(plugin)) {
         this.validators.set(plugin.name, plugin);
       }
-      
+
       if (this.isReporterPlugin(plugin)) {
         this.reporters.set(plugin.name, plugin);
       }
@@ -76,8 +79,8 @@ export class PluginManager {
     } catch (error) {
       const pluginError = error instanceof PluginError 
         ? error 
-        : new PluginError(`Failed to register plugin '${plugin.name}': ${error}`, plugin.name);
-      
+        : new PluginError(`Failed to register plugin '${plugin?.name ?? 'unknown'}': ${error}`, plugin?.name ?? 'unknown');
+
       this.logger.error(pluginError.message);
       throw pluginError;
     }
@@ -86,7 +89,9 @@ export class PluginManager {
   async unregisterPlugin(pluginName: string): Promise<void> {
     const plugin = this.plugins.get(pluginName);
     if (!plugin) {
-      throw new PluginError(`Plugin '${pluginName}' is not registered`, pluginName);
+      const pluginError = new PluginError(`Plugin '${pluginName}' is not registered`, pluginName);
+      this.logger.error(pluginError.message);
+      throw pluginError;
     }
 
     try {
