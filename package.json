@@ -22,6 +22,7 @@
     "clean": "rm -rf dist",
     "dev": "ts-node src/index.ts",
     "test": "node test/test.js",
+    "test:jest": "jest --coverage",
     "test:ts": "ts-node test/test-typescript.ts",
     "test-example": "node test-example.js",
     "lint": "echo \"No linting configured\"",

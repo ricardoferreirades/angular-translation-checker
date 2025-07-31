@@ -28,11 +28,24 @@ export const DEFAULT_CONFIG: AnalysisConfig = {
   plugins: []
 };
 
+/**
+ * ConfigurationManager handles loading, merging, validating, and generating configuration for the translation checker.
+ * It supports config file discovery, deep merging, schema validation, and path checks for robust analysis setup.
+ */
 export class ConfigurationManager {
+
+  /**
+   * Creates a new ConfigurationManager.
+   * @param {Logger} logger - Logger instance for debug and error output.
+   */
   constructor(private logger: Logger) {}
 
   /**
-   * Load configuration from file and merge with defaults
+   * Loads and merges configuration from a file (if found) with defaults.
+   * Discovers config file automatically if not provided, validates and merges with defaults.
+   * @param {string} [configPath] - Optional path to configuration file.
+   * @returns {Promise<AnalysisConfig>} The loaded and merged configuration.
+   * @throws {ConfigurationError} If loading or validation fails.
    */
   async loadConfig(configPath?: string): Promise<AnalysisConfig> {
     const config = { ...DEFAULT_CONFIG };
@@ -55,7 +68,11 @@ export class ConfigurationManager {
   }
 
   /**
-   * Load configuration from a specific file
+   * Loads configuration from a specific file and validates its structure.
+   * @param {string} filePath - Path to the configuration file.
+   * @returns {Promise<DeepPartial<AnalysisConfig>>} The loaded configuration object.
+   * @throws {ConfigurationError} If file is missing or invalid.
+   * @private
    */
   private async loadConfigFile(filePath: string): Promise<DeepPartial<AnalysisConfig>> {
     const resolvedPath = path.resolve(filePath);
@@ -84,7 +101,10 @@ export class ConfigurationManager {
   }
 
   /**
-   * Find configuration file automatically
+   * Attempts to find a configuration file automatically from common locations.
+   * Supports JSON config files and package.json with embedded config.
+   * @returns {Promise<string | null>} Path to found config file, or null if not found.
+   * @private
    */
   private async findConfigFile(): Promise<string | null> {
     const possiblePaths = [
@@ -117,7 +137,11 @@ export class ConfigurationManager {
   }
 
   /**
-   * Merge configurations with deep merge logic
+   * Deep merges two configuration objects, with override taking precedence.
+   * @param {AnalysisConfig} base - The base configuration.
+   * @param {DeepPartial<AnalysisConfig>} override - The override configuration.
+   * @returns {AnalysisConfig} The merged configuration.
+   * @private
    */
   private mergeConfigs(
     base: AnalysisConfig, 
@@ -148,7 +172,11 @@ export class ConfigurationManager {
   }
 
   /**
-   * Validate configuration object
+   * Validates the structure and values of a configuration object.
+   * Throws if any required fields are missing or invalid.
+   * @param {any} config - The configuration object to validate.
+   * @throws {ConfigurationError} If validation fails.
+   * @private
    */
   private validateConfig(config: any): void {
     if (typeof config !== 'object' || config === null) {
@@ -232,7 +260,10 @@ export class ConfigurationManager {
   }
 
   /**
-   * Generate a default configuration file
+   * Generates a default configuration file at the specified output path.
+   * @param {string} [outputPath] - Path to write the config file to.
+   * @returns {Promise<void>}
+   * @throws {ConfigurationError} If writing fails.
    */
   async generateConfigFile(outputPath: string = './angular-translation-checker.config.json'): Promise<void> {
     const configTemplate = {
@@ -268,7 +299,10 @@ export class ConfigurationManager {
   }
 
   /**
-   * Validate paths exist
+   * Validates that the configured locales and source paths exist and are directories.
+   * @param {AnalysisConfig} config - The configuration to validate paths for.
+   * @returns {Promise<void>}
+   * @throws {ConfigurationError} If any path is missing or invalid.
    */
   async validatePaths(config: AnalysisConfig): Promise<void> {
     const errors: string[] = [];

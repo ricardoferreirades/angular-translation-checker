@@ -23,6 +23,11 @@ export interface NodePath {
 }
 
 
+/**
+ * NodeFileSystemAdapter implements the FileSystemAdapter interface using Node.js fs and path modules.
+ * It provides asynchronous file and directory operations, globbing, and utility methods for translation analysis.
+ * This adapter is designed for testability and platform independence, abstracting direct Node.js API usage.
+ */
 export class NodeFileSystemAdapter implements FileSystemAdapter {
   private fs: NodeFs;
   private path: NodePath;
@@ -31,6 +36,10 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
   private readdirAsync: (path: string) => Promise<string[]>;
   private statAsync: (path: string) => Promise<any>;
 
+  /**
+   * NodeFileSystemAdapter provides file system operations (read, write, glob, readdir) for translation analysis.
+   * Abstracts Node.js fs and path APIs for testability and platform independence.
+   */
   constructor(fsModule?: NodeFs, pathModule?: NodePath) {
     this.fs = fsModule || require('fs');
     this.path = pathModule || require('path');
@@ -40,6 +49,12 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     this.statAsync = promisify(this.fs.stat);
   }
 
+  /**
+   * Reads the contents of a file as a UTF-8 string.
+   * @param {string} filePath - Path to the file.
+   * @returns {Promise<string>} The file contents.
+   * @throws {Error} If reading fails.
+   */
   async readFile(filePath: string): Promise<string> {
     try {
       return await this.readFileAsync(filePath, 'utf8');
@@ -48,6 +63,13 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     }
   }
 
+  /**
+   * Writes content to a file, creating directories as needed.
+   * @param {string} filePath - Path to the file.
+   * @param {string} content - Content to write.
+   * @returns {Promise<void>}
+   * @throws {Error} If writing fails.
+   */
   async writeFile(filePath: string, content: string): Promise<void> {
     try {
       // Ensure directory exists
@@ -61,6 +83,12 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     }
   }
 
+  /**
+   * Reads the contents of a directory.
+   * @param {string} dirPath - Path to the directory.
+   * @returns {Promise<string[]>} List of file and directory names.
+   * @throws {Error} If reading fails.
+   */
   async readdir(dirPath: string): Promise<string[]> {
     try {
       return await this.readdirAsync(dirPath);
@@ -69,6 +97,11 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     }
   }
 
+  /**
+   * Checks if a file or directory exists.
+   * @param {string} filePath - Path to check.
+   * @returns {Promise<boolean>} True if exists, false otherwise.
+   */
   async exists(filePath: string): Promise<boolean> {
     try {
       await this.statAsync(filePath);
@@ -78,6 +111,11 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     }
   }
 
+  /**
+   * Checks if a path is a directory.
+   * @param {string} filePath - Path to check.
+   * @returns {Promise<boolean>} True if directory, false otherwise.
+   */
   async isDirectory(filePath: string): Promise<boolean> {
     try {
       const stats = await this.statAsync(filePath);
@@ -87,6 +125,12 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     }
   }
 
+  /**
+   * Finds files matching a glob pattern, using modern glob if available, otherwise a fallback.
+   * @param {string} pattern - Glob pattern.
+   * @param {any} [options={}] - Glob options (e.g., cwd).
+   * @returns {Promise<string[]>} List of matching file paths.
+   */
   async glob(pattern: string, options: any = {}): Promise<string[]> {
     try {
       // Try to use the modern glob API with dynamic import
@@ -102,6 +146,13 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     return this.basicGlob(pattern, options.cwd || process.cwd());
   }
 
+  /**
+   * Fallback implementation for globbing files recursively from a base path.
+   * @param {string} pattern - Glob pattern.
+   * @param {string} basePath - Base directory to search from.
+   * @returns {Promise<string[]>} List of matching file paths.
+   * @private
+   */
   private async basicGlob(pattern: string, basePath: string): Promise<string[]> {
     const results: string[] = [];
     try {
@@ -117,6 +168,13 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     return results;
   }
 
+  /**
+   * Recursively walks a directory, calling a callback for each file found.
+   * @param {string} dirPath - Directory to walk.
+   * @param {(filePath: string) => void} callback - Callback for each file.
+   * @returns {Promise<void>}
+   * @private
+   */
   private async walkDirectory(
     dirPath: string,
     callback: (filePath: string) => void
@@ -137,6 +195,13 @@ export class NodeFileSystemAdapter implements FileSystemAdapter {
     }
   }
 
+  /**
+   * Checks if a file path matches a glob pattern (basic implementation).
+   * @param {string} filePath - File path to check.
+   * @param {string} pattern - Glob pattern.
+   * @returns {boolean} True if matches, false otherwise.
+   * @private
+   */
   private matchesPattern(filePath: string, pattern: string): boolean {
     // Convert glob pattern to regex
     let regexPattern = pattern

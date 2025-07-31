@@ -17,6 +17,12 @@ import { ConsoleLogger } from './logger';
 import { SimpleEventBus } from './event-bus';
 import { NodeFileSystemAdapter } from './filesystem';
 
+/**
+ * Orchestrates the translation analysis process, including configuration loading,
+ * plugin management, file discovery, key extraction, analysis, formatting, reporting, and cleanup.
+ *
+ * This class is the main entry point for running translation checks and generating reports.
+ */
 export class TranslationChecker {
   private logger: Logger;
   private eventBus: EventBus;
@@ -24,6 +30,9 @@ export class TranslationChecker {
   private configManager: ConfigurationManager;
   private fileSystem: FileSystemAdapter;
 
+  /**
+   * Constructs a new TranslationChecker with default logger, event bus, plugin manager, config manager, and file system adapter.
+   */
   constructor() {
     this.logger = new ConsoleLogger();
     this.eventBus = new SimpleEventBus();
@@ -33,7 +42,13 @@ export class TranslationChecker {
   }
 
   /**
-   * Initialize the translation checker with configuration
+   * Initializes the translation checker with configuration.
+   * Loads and validates configuration, applies overrides, sets up plugins, and emits lifecycle events.
+   *
+   * @param {string} [configPath] - Path to the configuration file.
+   * @param {Partial<AnalysisConfig>} [configOverrides] - Optional overrides for configuration values.
+   * @returns {Promise<AnalysisConfig>} The loaded and finalized configuration object.
+   * @throws {TranslationCheckerError} If initialization fails.
    */
   async initialize(configPath?: string, configOverrides?: Partial<AnalysisConfig>): Promise<AnalysisConfig> {
     try {
@@ -77,7 +92,12 @@ export class TranslationChecker {
   }
 
   /**
-   * Analyze translations based on configuration
+   * Analyzes translations based on the provided configuration.
+   * Discovers translation and source files, extracts keys, runs analyzers and validators, and emits events.
+   *
+   * @param {AnalysisConfig} config - The analysis configuration.
+   * @returns {Promise<AnalysisResult>} The result of the translation analysis.
+   * @throws {TranslationCheckerError} If analysis fails.
    */
   async analyze(config: AnalysisConfig): Promise<AnalysisResult> {
     try {
@@ -127,7 +147,13 @@ export class TranslationChecker {
   }
 
   /**
-   * Format analysis result
+   * Formats the analysis result using the specified formatter plugin.
+   *
+   * @param {AnalysisResult} result - The analysis result to format.
+   * @param {string} format - The formatter name or type.
+   * @param {OutputSection[]} sections - Sections to include in the output.
+   * @returns {Promise<string>} The formatted output string.
+   * @throws {TranslationCheckerError} If formatting fails or no formatter is found.
    */
   async format(
     result: AnalysisResult, 
@@ -157,7 +183,11 @@ export class TranslationChecker {
   }
 
   /**
-   * Generate reports
+   * Generates reports using all registered reporter plugins.
+   *
+   * @param {AnalysisResult} result - The analysis result to report on.
+   * @param {string} output - The formatted output to include in the report.
+   * @returns {Promise<void>}
    */
   async report(result: AnalysisResult, output: string): Promise<void> {
     const reporters = this.pluginManager.getReporters();
@@ -172,7 +202,10 @@ export class TranslationChecker {
   }
 
   /**
-   * Cleanup resources
+   * Cleans up resources and emits a cleanup event.
+   * Calls plugin manager cleanup and notifies listeners.
+   *
+   * @returns {Promise<void>}
    */
   async cleanup(): Promise<void> {
     await this.pluginManager.cleanup();
@@ -181,12 +214,26 @@ export class TranslationChecker {
 
   // Private methods
 
+
+  /**
+   * Registers built-in plugins required for translation analysis.
+   *
+   * @param {AnalysisConfig} config - The analysis configuration.
+   * @returns {Promise<void>}
+   */
   private async registerBuiltInPlugins(config: AnalysisConfig): Promise<void> {
     // Built-in plugins will be registered here
     // For now, we'll create them in separate files
     this.logger.debug('Registering built-in plugins');
   }
 
+
+  /**
+   * Registers custom plugins specified in the configuration.
+   *
+   * @param {AnalysisConfig} config - The analysis configuration.
+   * @returns {Promise<void>}
+   */
   private async registerCustomPlugins(config: AnalysisConfig): Promise<void> {
     if (!config.plugins) return;
 
@@ -202,6 +249,15 @@ export class TranslationChecker {
     }
   }
 
+
+  /**
+   * Discovers translation files in the configured locales path.
+   * Reads and parses all JSON translation files.
+   *
+   * @param {AnalysisConfig} config - The analysis configuration.
+   * @returns {Promise<TranslationFile[]>} Array of discovered translation files.
+   * @throws {TranslationCheckerError} If discovery fails.
+   */
   private async discoverTranslationFiles(config: AnalysisConfig): Promise<TranslationFile[]> {
     const files: TranslationFile[] = [];
     
@@ -233,6 +289,14 @@ export class TranslationChecker {
     return files;
   }
 
+
+  /**
+   * Discovers source files based on configured glob patterns.
+   *
+   * @param {AnalysisConfig} config - The analysis configuration.
+   * @returns {Promise<string[]>} Array of discovered source file paths.
+   * @throws {TranslationCheckerError} If discovery fails.
+   */
   private async discoverSourceFiles(config: AnalysisConfig): Promise<string[]> {
     const files: string[] = [];
     
@@ -261,6 +325,14 @@ export class TranslationChecker {
     return files;
   }
 
+
+  /**
+   * Extracts translation keys from the provided source files using registered extractors.
+   *
+   * @param {string[]} sourceFiles - Array of source file paths.
+   * @param {AnalysisConfig} config - The analysis configuration.
+   * @returns {Promise<TranslationKey[]>} Array of extracted translation keys.
+   */
   private async extractTranslationKeys(
     sourceFiles: string[], 
     config: AnalysisConfig
@@ -289,6 +361,13 @@ export class TranslationChecker {
     return keys;
   }
 
+
+  /**
+   * Runs all registered analyzers on the analysis context and merges their results.
+   *
+   * @param {AnalysisContext} context - The analysis context containing config, files, and keys.
+   * @returns {Promise<AnalysisResult>} The merged analysis result.
+   */
   private async runAnalyzers(context: AnalysisContext): Promise<AnalysisResult> {
     const analyzers = this.pluginManager.getAnalyzers();
     
@@ -324,6 +403,13 @@ export class TranslationChecker {
     return result;
   }
 
+
+  /**
+   * Runs all registered validators on the analysis result and logs errors or warnings.
+   *
+   * @param {AnalysisResult} result - The analysis result to validate.
+   * @returns {Promise<void>}
+   */
   private async runValidators(result: AnalysisResult): Promise<void> {
     const validators = this.pluginManager.getValidators();
 
@@ -344,6 +430,14 @@ export class TranslationChecker {
     }
   }
 
+
+  /**
+   * Merges two analysis results into a single result, combining arrays and summaries.
+   *
+   * @param {AnalysisResult} base - The base analysis result.
+   * @param {Partial<AnalysisResult>} partial - The partial result to merge in.
+   * @returns {AnalysisResult} The merged analysis result.
+   */
   private mergeAnalysisResults(
     base: AnalysisResult, 
     partial: Partial<AnalysisResult>
