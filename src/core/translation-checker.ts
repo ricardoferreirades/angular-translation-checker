@@ -33,12 +33,18 @@ export class TranslationChecker {
   /**
    * Constructs a new TranslationChecker with default logger, event bus, plugin manager, config manager, and file system adapter.
    */
-  constructor() {
-    this.logger = new ConsoleLogger();
-    this.eventBus = new SimpleEventBus();
-    this.pluginManager = new PluginManager(this.logger, this.eventBus);
-    this.configManager = new ConfigurationManager(this.logger);
-    this.fileSystem = new NodeFileSystemAdapter();
+  constructor(
+    logger?: Logger,
+    eventBus?: EventBus,
+    pluginManager?: PluginManager,
+    configManager?: ConfigurationManager,
+    fileSystem?: FileSystemAdapter
+  ) {
+    this.logger = logger ?? new ConsoleLogger();
+    this.eventBus = eventBus ?? new SimpleEventBus();
+    this.pluginManager = pluginManager ?? new PluginManager(this.logger, this.eventBus);
+    this.configManager = configManager ?? new ConfigurationManager(this.logger);
+    this.fileSystem = fileSystem ?? new NodeFileSystemAdapter();
   }
 
   /**
